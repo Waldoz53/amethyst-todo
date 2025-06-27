@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+*, *::after, *::before {
+  font-family: "Lato", sans-serif;
+  color: #1D2D3D;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+body {
+  background: rebeccapurple;
+}
+
+#app {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+}
+
+.instructions {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+button {
+  padding: .5em 1em;
+  border-radius: 6px;
+  border-style: none;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  border: none;
+  padding: 1em .5em;
+  border: 1px solid black;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+
+}
+
+.form {
+  margin-bottom: 1em;  
+  width: 100%;
+  display: flex;
+}
+
+.form button {
+  background: #0069d9;
+  margin-left: .5em;
+  color: white;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.form button:active {
+  opacity: .8;
+  transform: translateY(1px);
+}
+
+.item {
+  list-style: none;
+  padding: 1em .5em;
+  border: 2px solid #1D2D3D;
+  width: 465px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  margin-bottom: .25em;
+  position: relative;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+  background: white;
+}
+
+.item::before {
+  content: "";
+  background: #1D2D3D;
+  height: 4px;
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  transition: .3s;
+}
+
+.item:hover::before {
+  width: 100%;
+}
+
+.item p {
+  width: 80%;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.line-clamp:hover {
+  line-clamp: 999;
+  -webkit-line-clamp: 999;
+}
+
+.item button {
+  opacity: 0;
+  cursor: pointer;
+  font-size: .75em;
+  background: #1D2D3D;
+  color: white;
+}
+
+.item:hover button {
+  opacity: 1;
+}
+
+.remove {
+  background: #bc3545;
+  color: white;
+  margin-top: 2em;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.remove:hover {
+  background: #dc3545;
+}
