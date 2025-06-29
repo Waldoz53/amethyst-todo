@@ -58,35 +58,37 @@ function App() {
   };
 
   return (
-    <div id="app">
-      <div className="form">
-        <input
-          ref={inputRef}
-          type="text"
-          value={input}
-          placeholder="Add an item"
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && addItem()}
-        />
-        <button onClick={addItem}>+</button>
-      </div>
+    <>
+      <main id="app">
+        <section className="form">
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            placeholder="Add an item"
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && addItem()}
+          />
+          <button onClick={addItem}>+</button>
+        </section>
 
-      <div className="list">
-        {list.map((item, index) => (
-          <div className="item" key={index} style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
-            <p className="line-clamp" style={{ margin: 0 }}>{item}</p>
-            <div className="spacer"></div>
-            <button onClick={() => removeItem(index)}>Delete</button>
-          </div>
-        ))}
+        <section className="list">
+          {list.map((item, index) => (
+            <div className="item" key={index} style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
+              <p className="line-clamp" style={{ margin: 0 }}>{item}</p>
+              <div className="spacer"></div>
+              <button onClick={() => removeItem(index)}>Delete</button>
+            </div>
+          ))}
 
-        {list.length > 0 && (
-          <button className="remove" onClick={clearItems} style={{ marginTop: 12 }}>
-            Clear All Items
-          </button>
-        )}
-      </div>
-    </div>
+          {list.length > 0 && (
+            <button className="remove" onClick={clearItems} style={{ marginTop: 12 }}>
+              Clear All Items
+            </button>
+          )}
+        </section>
+      </main>
+    </>
   );
 }
 

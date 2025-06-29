@@ -54,7 +54,9 @@ input {
   color: white;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
-
+.form button:hover {
+  background: #0079FF;
+}
 .form button:active {
   opacity: .8;
   transform: translateY(1px);
@@ -73,7 +75,6 @@ input {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
   background: white;
 }
-
 .item::before {
   content: "";
   background: #1D2D3D;
@@ -85,7 +86,6 @@ input {
   left: 0;
   transition: .3s;
 }
-
 .item:hover::before {
   width: 100%;
 }
@@ -101,7 +101,6 @@ input {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
-
 .line-clamp:hover {
   line-clamp: 999;
   -webkit-line-clamp: 999;
@@ -113,10 +112,13 @@ input {
   font-size: .75em;
   background: #1D2D3D;
   color: white;
+  box-shadow: 1px 1px 1px black;
 }
-
 .item:hover button {
   opacity: 1;
+}
+.item button:hover {
+  background: #4B75A0;
 }
 
 .remove {
@@ -125,7 +127,6 @@ input {
   margin-top: 2em;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
-
 .remove:hover {
   background: #dc3545;
 }
