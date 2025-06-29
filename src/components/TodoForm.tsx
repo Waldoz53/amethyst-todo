@@ -1,3 +1,5 @@
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useRef } from "react"
 
 interface TodoFormProps {
@@ -19,7 +21,9 @@ export default function TodoForm({ input, setInput, onAdd }: TodoFormProps) {
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && onAdd()}
       />
-      <button onClick={onAdd}>+</button>
+      <button onClick={onAdd}>
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
     </section>
   )
 }

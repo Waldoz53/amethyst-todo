@@ -1,10 +1,12 @@
+import { faHouse } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 
 export default function Header() {
   return (
     <div className="header">
       <Link to="/">
-        <h1>Main</h1>
+        <FontAwesomeIcon icon={faHouse}/>
       </Link>
 
       {/* if not logged in */}

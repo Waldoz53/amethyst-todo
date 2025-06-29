@@ -15,16 +15,13 @@ body {
 
 /* Header component */
 .header {
-  padding: .5em 1em;
+  padding: 1em 1em .5em 1em;
 }
-.header a {
-  text-decoration: none;
-  display: inline-block;
-}
-.header h1 {
-  color: white;
+.header svg {
   font-size: 20px;
-  text-decoration: underline;
+}
+.header svg path {
+  fill: white;
 }
 /* end Header component */
 
@@ -34,11 +31,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 500px;
-}
-
-.instructions {
-  width: 100%;
-  margin-bottom: 1em;
 }
 
 button {
@@ -75,6 +67,12 @@ input {
 .form button:active {
   opacity: .8;
   transform: translateY(1px);
+}
+.form button svg {
+  font-size: 24px;
+}
+.form button svg path {
+  fill: white;
 }
 
 .list {
@@ -129,16 +127,16 @@ input {
 .item button {
   opacity: 0;
   cursor: pointer;
-  font-size: .75em;
-  background: #1D2D3D;
-  color: white;
-  box-shadow: 1px 1px 1px black;
+  background: transparent;
 }
 .item:hover button {
   opacity: 1;
 }
-.item button:hover {
-  background: #4B75A0;
+.item button svg {
+  font-size: 18px;
+}
+.item button:hover svg path {
+  fill: #4B75A0;
 }
 
 .remove {

@@ -70,7 +70,7 @@ function Home() {
 
           {list.length > 0 && (
             <button className="remove" onClick={clearItems}>
-              Clear All Items
+              Delete All
             </button>
           )}
         </section>
