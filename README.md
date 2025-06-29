@@ -3,7 +3,6 @@ A to do list built with React Typescript + Tauri. Built as a lightweight cross p
 
 ## Future Plans
 1. Reorganize code
-2. Add a header!
 2. Drag and drop to rearrange items
 3. Completion states
 4. Due dates

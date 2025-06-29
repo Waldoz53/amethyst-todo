@@ -13,6 +13,22 @@ body {
   background: rebeccapurple;
 }
 
+/* Header component */
+.header {
+  padding: .5em 1em;
+}
+.header a {
+  text-decoration: none;
+  display: inline-block;
+}
+.header h1 {
+  color: white;
+  font-size: 20px;
+  text-decoration: underline;
+}
+/* end Header component */
+
+/* Home */
 #app {
   padding: 1em;
   display: flex;
@@ -39,7 +55,6 @@ input {
   border: 1px solid black;
   border-radius: 6px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-
 }
 
 .form {
@@ -62,18 +77,23 @@ input {
   transform: translateY(1px);
 }
 
+.list {
+  width: 100%;
+}
+
 .item {
   list-style: none;
   padding: 1em .5em;
   border: 2px solid #1D2D3D;
-  width: 465px;
+  width: 100%;
   display: flex;
   align-items: center;
   border-radius: 6px;
-  margin-bottom: .25em;
+  margin-bottom: .5em;
   position: relative;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
   background: white;
+  box-sizing: border-box;
 }
 .item::before {
   content: "";
@@ -126,7 +146,10 @@ input {
   color: white;
   margin-top: 2em;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  position: fixed;
+  bottom: 1em;
 }
 .remove:hover {
   background: #dc3545;
 }
+/* end Home */
