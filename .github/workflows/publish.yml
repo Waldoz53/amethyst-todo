@@ -26,27 +26,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get version
-        id: get-version
-        run: echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
-
-      - name: setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
 
-      - name: install Rust stable
+      - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-      - name: install dependencies (ubuntu only)
+      - name: Install Ubuntu dependencies
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
-      - name: install frontend dependencies
+      - name: Install frontend dependencies
         run: npm install
 
       - uses: tauri-apps/tauri-action@v0
@@ -62,14 +58,21 @@ jobs:
           prerelease: false
           args: ${{ matrix.args }}
 
-      - name: Upload latest.json to GitHub Pages
-        if: matrix.platform == 'ubuntu-22.04'
+  upload-latest-json:
+    needs: publish-tauri
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Pages output dir
+        run: mkdir gh-pages
+
+      - name: Find and copy latest.json
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-          git switch gh-pages || git checkout gh-pages
-          cp src-tauri/target/release/bundle/updater/latest.json ./latest.json
-          git add latest.json
-          git commit -m "Update latest.json for v${{ steps.get-version.outputs.version }}" || echo "No changes to commit"
-          git push origin gh-pages
+          find . -type f -name latest.json -exec cp {} gh-pages/latest.json \;
+
+      - name: Deploy latest.json to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages
