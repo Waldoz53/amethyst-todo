@@ -61,16 +61,23 @@ jobs:
   upload-latest-json:
     needs: publish-tauri
     runs-on: ubuntu-latest
-    if: always()
+    if: success()
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Pages output dir
-        run: mkdir gh-pages
+        run: |
+          rm -rf gh-pages
+          mkdir gh-pages
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
 
       - name: Find and copy latest.json
         run: |
-          find . -type f -name latest.json -exec cp {} gh-pages/latest.json \;
+          find artifacts -type f -name latest.json -exec cp {} gh-pages/latest.json \;
 
       - name: Deploy latest.json to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
