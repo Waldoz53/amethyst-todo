@@ -58,29 +58,30 @@ jobs:
           prerelease: false
           args: ${{ matrix.args }}
 
+      - name: Upload latest.json artifact
+        if: matrix.platform == 'macos-latest' && matrix.args == '--target x86_64-apple-darwin'
+        run: |
+          mkdir -p upload
+          find . -type f -name latest.json -exec cp {} upload/latest.json \;
+
+      - name: Upload artifact
+        if: matrix.platform == 'macos-latest' && matrix.args == '--target x86_64-apple-darwin'
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-json
+          path: upload/latest.json
+
   upload-latest-json:
     needs: publish-tauri
     runs-on: ubuntu-latest
-    if: success()
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Pages output dir
-        run: |
-          rm -rf gh-pages
-          mkdir gh-pages
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
-          path: artifacts
+          name: latest-json
+          path: gh-pages
 
-      - name: Find and copy latest.json
-        run: |
-          find artifacts -type f -name latest.json -exec cp {} gh-pages/latest.json \;
-
-      - name: Deploy latest.json to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_PAT }}
-          publish_dir: ./gh-pages
+          publish_dir: gh-pages
