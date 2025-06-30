@@ -25,9 +25,7 @@
     "active": true,
     "targets": "all",
     "icon": [
-      "icons/32x32.png",
-      "icons/128x128.png",
-      "icons/128x128@2x.png",
+      "icons/icon.png",
       "icons/icon.icns",
       "icons/icon.ico"
     ],
@@ -35,7 +33,7 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQ1OTUwMTNEOTE0NzBCOTIKUldTU0MwZVJQUUdWUlgxbDF0cnM4bFJQYllzRm1FQ2w1RUR6cFdNNXp1bVhwTlp0Y29qU0tFaUoK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEYyNjc0ODg5NTMxQUM2QjEKUldTeHhocFRpVWhuOGo1ZW5OZFo2Tkd5L2FCZW8xSjcvcVc1cWxwUFFGTVJLV0UvQWhUTVZzd2QK",
       "endpoints": [
         "https://waldoz53.github.io/amethyst-todo/latest.json"
       ]

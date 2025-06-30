@@ -1,2 +1,4 @@
-# v0.1.0
-Test release! All basic features are here.
+# v0.1.1
+Updater test
+
+1. Updated icons

@@ -5,6 +5,7 @@ A to do list built with React Typescript + Tauri. Built as a lightweight cross p
 ## Future Plans
 
 1. Reorganize code
+2. Add icons/logos
 2. Settings page for:
 3. ...modifying auto delete on completion
 4. ...login/logout
