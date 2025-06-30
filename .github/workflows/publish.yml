@@ -58,30 +58,42 @@ jobs:
           prerelease: false
           args: ${{ matrix.args }}
 
-      - name: Upload latest.json artifact
-        if: matrix.platform == 'macos-latest' && matrix.args == '--target x86_64-apple-darwin'
-        run: |
-          mkdir -p upload
-          find . -type f -name latest.json -exec cp {} upload/latest.json \;
-
-      - name: Upload artifact
-        if: matrix.platform == 'macos-latest' && matrix.args == '--target x86_64-apple-darwin'
-        uses: actions/upload-artifact@v4
-        with:
-          name: latest-json
-          path: upload/latest.json
-
   upload-latest-json:
     needs: publish-tauri
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download latest.json from release
+        uses: actions/github-script@v6
+        id: get-latest-json
         with:
-          name: latest-json
-          path: gh-pages
+          script: |
+            const releases = await github.rest.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            const draftRelease = releases.data.find(r => r.draft === true);
+            if (!draftRelease) throw new Error("No draft release found");
+            const asset = draftRelease.assets.find(a => a.name === "latest.json");
+            if (!asset) throw new Error("latest.json asset not found");
+            return asset.browser_download_url;
+          result-encoding: string
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_PAT }}
-          publish_dir: gh-pages
+      - name: Download latest.json file
+        run: curl -L ${{ steps.get-latest-json.outputs.result }} -o latest.json
+
+      - name: Setup Git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Clone gh-pages branch
+        run: |
+          git clone --single-branch --branch gh-pages https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} gh-pages
+
+      - name: Copy latest.json and commit
+        run: |
+          cp latest.json gh-pages/latest.json
+          cd gh-pages
+          git add latest.json
+          git commit -m "Update latest.json from release ${{ github.run_number }}" || echo "No changes to commit"
+          git push origin gh-pages
