@@ -6,7 +6,13 @@ import TodoItem from "../components/TodoItem";
 
 const FILE_NAME = "todo.json";
 
-async function loadTodoList(): Promise<string[]> {
+type TodoItem = {
+  text: string,
+  completed: boolean,
+  createdAt: string
+}
+
+async function loadTodoList(): Promise<TodoItem[]> {
   const fileAppDataExists = await exists(FILE_NAME, { baseDir: BaseDirectory.AppData })
   if (fileAppDataExists) {
     const data = await readTextFile(FILE_NAME, { baseDir: BaseDirectory.AppData })
@@ -21,19 +27,19 @@ async function loadTodoList(): Promise<string[]> {
   }
 }
 
-async function saveTodoList(list: string[]): Promise<void> {
+async function saveTodoList(list: TodoItem[]): Promise<void> {
   const jsonList = JSON.stringify(list)
   await writeTextFile(FILE_NAME, jsonList, { baseDir: BaseDirectory.AppData })
 }
 
 function Home() {
   const [input, setInput] = useState("");
-  const [list, setList] = useState<string[]>([]);
+  const [list, setList] = useState<TodoItem[]>([]);
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     loadTodoList().then(savedList => {
-      setList(savedList.length ? savedList : ["Default Task"]);
+      setList(savedList.length ? savedList : []);
       setLoaded(true);
     });
   }, []);
@@ -46,9 +52,20 @@ function Home() {
 
   const addItem = () => {
     if (!input.trim()) return;
-    setList([...list, input.trim()]);
+    const newItem = {
+      text: input.trim(),
+      completed: false,
+      createdAt: new Date().toString()
+    }
+    setList([...list, newItem]);
     setInput("");
   };
+
+  const toggleItem = (index: number) => {
+    const updated = [...list]
+    updated[index].completed = !updated[index].completed
+    setList(updated)
+  }
 
   const removeItem = (index: number) => {
     setList(list.filter((_, i) => i !== index));
@@ -63,17 +80,17 @@ function Home() {
       <main id="app">
         <TodoForm input={input} setInput={setInput} onAdd={addItem} />
 
-        <section className="list">
-          {list.map((item, index) => (
-            <TodoItem item={item} index={index} onRemove={removeItem}/>
-          ))}
+          <section className="list">
+            {list.map((item, index) => (
+              <TodoItem key={index} item={item} index={index} onRemove={removeItem} onToggle={toggleItem}/>
+            ))}
 
-          {list.length > 0 && (
-            <button className="remove" onClick={clearItems}>
-              Delete All
-            </button>
-          )}
-        </section>
+            {list.length > 0 && (
+              <button className="remove" onClick={clearItems}>
+                Delete All
+              </button>
+            )}
+          </section>
       </main>
     </>
   );

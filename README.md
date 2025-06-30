@@ -3,9 +3,7 @@ A to do list built with React Typescript + Tauri. Built as a lightweight cross p
 
 ## Future Plans
 1. Reorganize code
-2. Drag and drop to rearrange items
-3. Completion states
 4. Due dates
 5. Multiple lists?
-2. Better UI: move add to bottom of the app?
+2. Better UI: move add to bottom of the app for mobile versions
 3. Add a sync to do lists with account sign up, leading into monetization

@@ -104,12 +104,19 @@ input {
   left: 0;
   transition: .3s;
 }
+.item:hover {
+  background: #eee;
+}
 .item:hover::before {
   width: 100%;
 }
 
 .item p {
   width: 80%;
+}
+.item.completed p {
+  opacity: .5;
+  text-decoration: line-through;
 }
 
 .line-clamp {

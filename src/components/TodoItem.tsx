@@ -1,19 +1,29 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-interface TodoItemProps {
-  item: string,
-  index: number,
-  onRemove: (index: number) => void
+type TodoItem = {
+  text: string,
+  completed: boolean,
+  createdAt: string
 }
 
-export default function TodoItem({ item, index, onRemove }: TodoItemProps) {
+interface TodoItemProps {
+  item: TodoItem
+  index: number,
+  onRemove: (index: number) => void
+  onToggle: (index: number) => void
+}
+
+export default function TodoItem({ item, index, onRemove, onToggle }: TodoItemProps) {
 
   return (
-    <div className="item" key={index}>
-      <p className="line-clamp">{item}</p>
+    <div className={`item ${item.completed ? 'completed' : ''}`} onClick={() => onToggle(index)}>
+      <p className="line-clamp">{item.text}</p>
       <div className="spacer"></div>
-      <button onClick={() => onRemove(index)}>
+      <button onClick={(e) => {
+        e.stopPropagation()
+        onRemove(index)
+        }}>
         <FontAwesomeIcon icon={faTrash}/>
       </button>
     </div>
