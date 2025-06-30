@@ -1,15 +1,15 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useRef } from "react"
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRef } from 'react';
 
 interface TodoFormProps {
-  input: string,
-  setInput: (value: string) => void,
-  onAdd: () => void
+  input: string;
+  setInput: (value: string) => void;
+  onAdd: () => void;
 }
 
 export default function TodoForm({ input, setInput, onAdd }: TodoFormProps) {
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <section className="form">
@@ -25,5 +25,5 @@ export default function TodoForm({ input, setInput, onAdd }: TodoFormProps) {
         <FontAwesomeIcon icon={faPlus} />
       </button>
     </section>
-  )
+  );
 }

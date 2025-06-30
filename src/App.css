@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
-*, *::after, *::before {
-  font-family: "Lato", sans-serif;
-  color: #1D2D3D;
+*,
+*::after,
+*::before {
+  font-family: 'Lato', sans-serif;
+  color: #1d2d3d;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
@@ -15,7 +17,7 @@ body {
 
 /* Header component */
 .header {
-  padding: 1em 1em .5em 1em;
+  padding: 1em 1em 0.5em 1em;
 }
 .header svg {
   font-size: 20px;
@@ -34,7 +36,7 @@ body {
 }
 
 button {
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: 6px;
   border-style: none;
   cursor: pointer;
@@ -43,30 +45,30 @@ button {
 input {
   width: 100%;
   border: none;
-  padding: 1em .5em;
+  padding: 1em 0.5em;
   border: 1px solid black;
   border-radius: 6px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 
 .form {
-  margin-bottom: 1em;  
+  margin-bottom: 1em;
   width: 100%;
   display: flex;
 }
 
 .form button {
   background: #0069d9;
-  margin-left: .5em;
+  margin-left: 0.5em;
   color: white;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 .form button:hover {
-  background: #0079FF;
+  background: #0079ff;
   transform: translateY(1px);
 }
 .form button:active {
-  opacity: .8;
+  opacity: 0.8;
   transform: translateY(2px);
 }
 .form button svg {
@@ -82,28 +84,28 @@ input {
 
 .item {
   list-style: none;
-  padding: 1em .5em;
-  border: 2px solid #1D2D3D;
+  padding: 1em 0.5em;
+  border: 2px solid #1d2d3d;
   width: 100%;
   display: flex;
   align-items: center;
   border-radius: 6px;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   position: relative;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   background: white;
   box-sizing: border-box;
 }
 .item::before {
-  content: "";
-  background: #1D2D3D;
+  content: '';
+  background: #1d2d3d;
   height: 4px;
   width: 0;
   position: absolute;
   bottom: 0;
   right: 100%;
   left: 0;
-  transition: .3s;
+  transition: 0.3s;
 }
 .item:hover {
   background: #eee;
@@ -117,7 +119,7 @@ input {
   width: 80%;
 }
 .item.completed p {
-  opacity: .5;
+  opacity: 0.5;
   text-decoration: line-through;
 }
 
@@ -125,7 +127,7 @@ input {
   display: -webkit-box;
   line-clamp: 1;
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .line-clamp:hover {
@@ -134,7 +136,7 @@ input {
 }
 .line-clamp strong {
   color: #139e4f;
-  padding-right: .5em;
+  padding-right: 0.5em;
 }
 .line-clamp strong.overdue {
   color: #bc3545;
@@ -152,7 +154,7 @@ input {
   font-size: 18px;
 }
 .item button:hover svg path {
-  fill: #4B75A0;
+  fill: #4b75a0;
 }
 
 .remove {
