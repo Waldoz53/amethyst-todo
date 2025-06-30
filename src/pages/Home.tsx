@@ -55,7 +55,7 @@ function Home() {
     const newItem = {
       text: input.trim(),
       completed: false,
-      createdAt: new Date().toString()
+      createdAt: new Date().toISOString()
     }
     setList([...list, newItem]);
     setInput("");

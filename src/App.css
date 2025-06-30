@@ -130,6 +130,13 @@ input {
   line-clamp: 999;
   -webkit-line-clamp: 999;
 }
+.line-clamp strong {
+  color: #139e4f;
+  padding-right: .5em;
+}
+.line-clamp strong.overdue {
+  color: #bc3545;
+}
 
 .item button {
   opacity: 0;
