@@ -37,7 +37,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQ1OTUwMTNEOTE0NzBCOTIKUldTU0MwZVJQUUdWUlgxbDF0cnM4bFJQYllzRm1FQ2w1RUR6cFdNNXp1bVhwTlp0Y29qU0tFaUoK",
       "endpoints": [
-        "https://example.com/latest.json"
+        "https://waldoz53.github.io/amethyst-todo/latest.json"
       ]
     }
   }
