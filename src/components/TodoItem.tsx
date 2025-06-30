@@ -41,7 +41,6 @@ export default function TodoItem({
     <div
       role="button"
       tabIndex={0}
-
       className={`item ${item.completed ? 'completed' : ''}`}
       onClick={() => onToggle(index)}
       onKeyDown={(e) => {
