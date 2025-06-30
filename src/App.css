@@ -63,10 +63,11 @@ input {
 }
 .form button:hover {
   background: #0079FF;
+  transform: translateY(1px);
 }
 .form button:active {
   opacity: .8;
-  transform: translateY(1px);
+  transform: translateY(2px);
 }
 .form button svg {
   font-size: 24px;
@@ -106,6 +107,7 @@ input {
 }
 .item:hover {
   background: #eee;
+  transform: translateY(1px);
 }
 .item:hover::before {
   width: 100%;
@@ -163,5 +165,6 @@ input {
 }
 .remove:hover {
   background: #dc3545;
+  transform: translateY(1px);
 }
 /* end Home */
