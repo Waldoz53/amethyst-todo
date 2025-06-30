@@ -23,7 +23,6 @@ jobs:
             args: ''
 
     runs-on: ${{ matrix.platform }}
-
     steps:
       - uses: actions/checkout@v4
 
@@ -32,35 +31,48 @@ jobs:
         with:
           node-version: lts/*
 
-      - name: Install Rust stable
+      - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
-      - name: Install dependencies (Ubuntu only)
+      - name: Install Ubuntu dependencies
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.0-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: Install frontend dependencies
-        run: yarn install
+        run: npm install
 
-      - name: Extract version from package.json
-        id: extract_version
-        run: |
-          echo "version=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_OUTPUT
-
-      - name: Tauri Build & Publish
-        uses: tauri-apps/tauri-action@v0
+      - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
-          tagName: app-v${{ steps.extract_version.outputs.version }}
-          releaseName: 'App v${{ steps.extract_version.outputs.version }}'
+          tagName: app-v__VERSION__
+          releaseName: 'App v__VERSION__'
           releaseBody: 'See the assets to download this version and install.'
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
+
+  upload-latest-json:
+    needs: publish-tauri
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Pages output dir
+        run: mkdir gh-pages
+
+      - name: Find and copy latest.json
+        run: |
+          find . -type f -name latest.json -exec cp {} gh-pages/latest.json \;
+
+      - name: Deploy latest.json to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages
