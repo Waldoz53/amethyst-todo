@@ -48,7 +48,7 @@ export default function TodoItem({
       }}
     >
       <p className="line-clamp">
-        <strong className={timeLeft == 'Due Now!' ? 'overdue' : ''}>
+        <strong className={timeLeft == 'Overdue!' ? 'overdue' : ''}>
           {timeLeft}
         </strong>
         {item.text}
