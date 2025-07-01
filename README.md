@@ -3,8 +3,6 @@ A to do list built with React Typescript + Tauri. Built as a lightweight cross p
 
 ## Future Plans
 1. Reorganize code
-2. Modify due date options
-3. Add labels to the inputs instead of placeholders
 2. Settings page for:
 3. ...modifying auto delete on completion
 4. ...login/logout
