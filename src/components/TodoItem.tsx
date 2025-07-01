@@ -7,6 +7,7 @@ type TodoItem = {
   text: string;
   completed: boolean;
   createdAt: string;
+  dueDate: string;
 };
 
 interface TodoItemProps {
@@ -26,8 +27,7 @@ export default function TodoItem({
 
   useEffect(() => {
     const update = () => {
-      const created = new Date(item.createdAt).getTime();
-      const due = created + 60 * 60 * 1000;
+      const due = new Date(item.dueDate).getTime();
       const now = Date.now();
       setTimeLeft(formatTimeLeft(due - now));
     };
@@ -35,7 +35,7 @@ export default function TodoItem({
     update();
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
-  }, [item.createdAt]);
+  }, [item.dueDate]);
 
   return (
     <div
