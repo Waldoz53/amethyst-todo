@@ -17,11 +17,24 @@ body {
 
 /* Header component */
 .header {
-  padding: 1em 1em 0.5em 1em;
+  display: flex;
+  width: 100%;
+}
+
+.header a {
+  padding: 1em;
+  transition: .2s;
+  width: 50%;
+  text-align: center;
+}
+
+.header a:hover {
+  background: #330066;
+  transform: translate(1px);
 }
 
 .header svg {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .header svg path {
@@ -52,19 +65,41 @@ input {
   border: 1px solid black;
   border-radius: 6px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  height: 55px;
 }
 
 .form {
   margin-bottom: 1em;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: center;
+}
+
+.form .input-container {
+  margin-right: .5em;
+  flex-grow: 1;
+}
+
+.form .input-container:nth-child(2) {
+  width: 110px;
+  flex-grow: 0;
+}
+
+.input-container label {
+  color: white;
+}
+
+.input-container input {
+  margin-top: .25em;
 }
 
 .form button {
   background: #0069d9;
-  margin-left: 0.5em;
   color: white;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  height: 55px;
 }
 
 .form button:hover {
@@ -193,3 +228,23 @@ input {
 }
 
 /* end Home */
+
+/* Settings */
+.settings {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em;
+}
+
+.settings h1,
+.settings p {
+  color: white;
+  width: 100%;
+}
+
+.settings h1 {
+  font-size: 32px;
+}
+
+/* end Settings */

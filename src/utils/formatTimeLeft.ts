@@ -4,7 +4,7 @@ export function formatTimeLeft(ms: number): string {
   const minutes = Math.floor(ms / (1000 * 60)) % 60;
   const hours = Math.floor(ms / (1000 * 60 * 60));
 
-  if (hours > 0) return `${hours}h`;
-  if (minutes > 0) return `${minutes}m `;
+  if (hours > 0) return `${hours}h ${minutes}m`;
+  if (minutes > 0) return `${minutes}m`;
   return `${seconds}s`;
 }

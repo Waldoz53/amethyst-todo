@@ -16,6 +16,7 @@ type TodoItem = {
   text: string;
   completed: boolean;
   createdAt: string;
+  dueDate: string;
 };
 
 async function loadTodoList(): Promise<TodoItem[]> {
@@ -45,6 +46,7 @@ async function saveTodoList(list: TodoItem[]): Promise<void> {
 function Home() {
   const [input, setInput] = useState('');
   const [list, setList] = useState<TodoItem[]>([]);
+  const [dueInHours, setDueInHours] = useState(1);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -62,11 +64,17 @@ function Home() {
 
   const addItem = () => {
     if (!input.trim()) return;
+
+    const now = new Date();
+    const due = new Date(now.getTime() + dueInHours * 60 * 60 * 1000);
+
     const newItem = {
       text: input.trim(),
       completed: false,
       createdAt: new Date().toISOString(),
+      dueDate: due.toISOString(),
     };
+
     setList([...list, newItem]);
     setInput('');
   };
@@ -88,7 +96,7 @@ function Home() {
   return (
     <>
       <main id="app">
-        <TodoForm input={input} setInput={setInput} onAdd={addItem} />
+        <TodoForm input={input} setInput={setInput} onAdd={addItem} dueInHours={dueInHours} setDueInHours={setDueInHours} />
 
         <section className="list">
           {list.map((item, index) => (
