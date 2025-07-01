@@ -1,19 +1,22 @@
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
+import { message } from '@tauri-apps/plugin-dialog';
 
 export async function updater() {
   const update = await check();
+
   if (update) {
     console.log(
-      `found update ${update.version} from ${update.date} with notes ${update.body}`
+      `found update ${update.version} from ${update.date}`
     );
+
     let downloaded = 0;
     let contentLength = 0;
-    // alternatively we could also call update.download() and update.install() separately
+
     await update.downloadAndInstall((event) => {
       switch (event.event) {
         case 'Started':
-          if (event.data.contentLength != undefined) {
+          if (event.data.contentLength !== undefined) {
             contentLength = event.data.contentLength;
           }
           console.log(`started downloading ${event.data.contentLength} bytes`);
@@ -30,5 +33,10 @@ export async function updater() {
 
     console.log('update installed');
     await relaunch();
+  } else {
+    console.log('up to date');
+    await message('You are already running the latest version.', {
+      title: 'No updates found!',
+    });
   }
 }

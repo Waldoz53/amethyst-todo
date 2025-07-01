@@ -1,10 +1,12 @@
-# v0.1.2
+# v0.1.3
 
-## Main Page
-1. Added an hour input selection
+### Updater
+1. Attempting to fix the updater (hopefully should work!!)
+2. Adjusted the updater.ts script
+3. Switched from auto updater to a "Check for Updates" button in the settings page
 
-### Settings Page
-1. Adding the settings page! Which currently just has the version number :)
+### Dialog
+Added the Dialog plugin for some notification functionality
 
 ### Misc
-1. Updated icons
+Misc css, js tweaks
