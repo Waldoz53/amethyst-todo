@@ -30,7 +30,7 @@ body {
 
 .header a:hover {
   background: #330066;
-  transform: translate(1px);
+  transform: translateY(1px);
 }
 
 .header svg {
@@ -56,6 +56,7 @@ button {
   border-radius: 6px;
   border-style: none;
   cursor: pointer;
+  box-shadow: 1px 1px 1px black;
 }
 
 input {
@@ -98,7 +99,6 @@ input {
 .form button {
   background: #0069d9;
   color: white;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
   height: 55px;
 }
 
@@ -195,6 +195,7 @@ input {
   opacity: 0;
   cursor: pointer;
   background: transparent;
+  box-shadow: none;
 }
 
 .item:hover button {
@@ -217,7 +218,6 @@ input {
   background: #bc3545;
   color: white;
   margin-top: 2em;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
   position: fixed;
   bottom: 1em;
 }
@@ -250,7 +250,6 @@ input {
 .settings button {
   background: #0069d9;
   color: white;
-  box-shadow: 1px 1px 1px black;
   margin: 0;
 }
 

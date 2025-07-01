@@ -15,7 +15,7 @@ export default function Settings() {
       <h1>Settings (WIP)</h1>
       <p>Amethyst To Do List</p>
       <p>Developed by Amethyst Software (Waleed R.)</p>
-      <p>v0.1.3</p>
+      <p>v0.1.4</p>
 
       <button onClick={handleCheck}>{checking ? 'Checking...' : 'Check for Updates'}</button>
     </main>

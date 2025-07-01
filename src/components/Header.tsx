@@ -12,13 +12,6 @@ export default function Header() {
       <Link to="/settings">
         <FontAwesomeIcon icon={faGear} />
       </Link>
-
-      {/* if not logged in */}
-      {/* Log in */}
-      {/* Settings? */}
-      {/* if logged in */}
-      {/* Email */}
-      {/* links to settings/user page */}
     </nav>
   );
 }
