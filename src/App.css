@@ -247,4 +247,11 @@ input {
   font-size: 32px;
 }
 
+.settings button {
+  background: #0069d9;
+  color: white;
+  box-shadow: 1px 1px 1px black;
+  margin: 0;
+}
+
 /* end Settings */
