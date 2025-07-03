@@ -13,6 +13,7 @@
 
 body {
   background: rebeccapurple;
+  min-height: 100vh;
 }
 
 /* Header component */
@@ -60,11 +61,10 @@ button {
 input {
   width: 100%;
   border: none;
-  padding: 1em 0.5em;
+  padding: 0.5em;
   border: 1px solid black;
   border-radius: 6px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-  height: 55px;
 }
 
 .form {
@@ -97,7 +97,7 @@ input {
 .form button {
   background: #0069d9;
   color: white;
-  height: 55px;
+  height: 37 px;
 }
 
 .form button:hover {
@@ -110,7 +110,7 @@ input {
 }
 
 .form button svg {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .form button svg path {
@@ -123,7 +123,7 @@ input {
 
 .item {
   list-style: none;
-  padding: 1em 0.5em;
+  padding: 0.5em;
   border: 2px solid #1d2d3d;
   width: 100%;
   max-width: 500px;
@@ -132,7 +132,7 @@ input {
   border-radius: 6px;
   margin-bottom: 0.5em;
   position: relative;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
   background: white;
   box-sizing: border-box;
 }
@@ -254,15 +254,34 @@ input {
   font-size: 32px;
 }
 
+.settings p {
+  margin-bottom: 1em;
+}
+
 .settings .input-container {
   margin: 0;
   width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding-top: 1em;
+  padding-bottom: .5em;
 }
 
-.settings .input-container.default-hours input {
+.settings .input-container input {
   width: 75px;
   margin-left: .5em;
-  height: 25px;
+}
+
+.settings .input-container input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-left: 2em;
+  vertical-align: middle;
+  margin-top: -.25em;
+  cursor: pointer;
+}
+
+.settings .input-container label {
+  display: inline-block;
+  margin-bottom: 1em;
 }
 
 .settings button {
@@ -284,7 +303,13 @@ input {
 
 .settings .information {
   margin: 0;
-  margin-top: 10em;
+  position: fixed;
+  bottom: 1em;
+}
+
+.information p {
+  margin: 0;
+  font-size: 12px;
 }
 
 /* end Settings */
