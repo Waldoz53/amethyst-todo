@@ -23,14 +23,12 @@ body {
 
 .header a {
   padding: 1em;
-  transition: .2s;
   width: 50%;
   text-align: center;
 }
 
 .header a:hover {
   background: #330066;
-  transform: translateY(1px);
 }
 
 .header svg {
@@ -108,7 +106,6 @@ input {
 }
 
 .form button:active {
-  opacity: 0.8;
   transform: translateY(2px);
 }
 
@@ -129,6 +126,7 @@ input {
   padding: 1em 0.5em;
   border: 2px solid #1d2d3d;
   width: 100%;
+  max-width: 500px;
   display: flex;
   align-items: center;
   border-radius: 6px;
@@ -214,6 +212,10 @@ input {
   fill: #4b75a0;
 }
 
+.item button:active {
+  transform: translateY(2px);
+}
+
 .remove {
   background: #bc3545;
   color: white;
@@ -227,6 +229,10 @@ input {
   transform: translateY(1px);
 }
 
+.remove:active {
+  transform: translateY(2px);
+}
+
 /* end Home */
 
 /* Settings */
@@ -235,6 +241,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   gap: .5em;
+  width: 100%;
 }
 
 .settings h1,
@@ -247,10 +254,37 @@ input {
   font-size: 32px;
 }
 
+.settings .input-container {
+  margin: 0;
+  width: 100%;
+}
+
+.settings .input-container.default-hours input {
+  width: 75px;
+  margin-left: .5em;
+  height: 25px;
+}
+
 .settings button {
   background: #0069d9;
   color: white;
   margin: 0;
+  margin-top: 1em;
+}
+
+.settings button:hover {
+  background: #0079ff;
+  transform: translateY(1px);
+
+}
+
+.settings button:active {
+  transform: translateY(2px);
+}
+
+.settings .information {
+  margin: 0;
+  margin-top: 10em;
 }
 
 /* end Settings */
