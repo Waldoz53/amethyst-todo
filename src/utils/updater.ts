@@ -6,9 +6,7 @@ export async function updater() {
   const update = await check();
 
   if (update) {
-    console.log(
-      `found update ${update.version} from ${update.date}`
-    );
+    console.log(`found update ${update.version} from ${update.date}`);
 
     let downloaded = 0;
     let contentLength = 0;
@@ -37,7 +35,7 @@ export async function updater() {
     console.log('up to date');
     await message('You are already running the latest version.', {
       title: 'No updates found!',
-      kind: 'info'
+      kind: 'info',
     });
   }
 }

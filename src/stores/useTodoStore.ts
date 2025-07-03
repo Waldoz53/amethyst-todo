@@ -1,8 +1,8 @@
-import { create } from "zustand";
-import { TodoItem, loadTodoList, saveTodoList } from "../utils/todoStorage";
+import { create } from 'zustand';
+import { TodoItem, loadTodoList, saveTodoList } from '../utils/todoStorage';
 
 type TodoStore = {
-  todos: TodoItem[]
+  todos: TodoItem[];
   loaded: boolean;
   loadTodos: () => Promise<void>;
   saveTodos: () => Promise<void>;
@@ -11,7 +11,7 @@ type TodoStore = {
   removeTodo: (index: number) => void;
   clearTodos: () => void;
   setAll: (items: TodoItem[]) => void;
-}
+};
 
 export const useTodoStore = create<TodoStore>((set, get) => ({
   todos: [],
@@ -19,34 +19,34 @@ export const useTodoStore = create<TodoStore>((set, get) => ({
 
   loadTodos: async () => {
     const todos = await loadTodoList();
-    set({ todos, loaded: true })
+    set({ todos, loaded: true });
   },
 
   saveTodos: async () => {
-    await saveTodoList(get().todos)
+    await saveTodoList(get().todos);
   },
 
   addTodo: (item) => {
-    const updated = [...get().todos, item]
-    set({ todos: updated })
+    const updated = [...get().todos, item];
+    set({ todos: updated });
   },
 
   toggleTodo: (index) => {
-    const updated = [...get().todos]
-    updated[index].completed = !updated[index].completed
-    set({ todos: updated })
+    const updated = [...get().todos];
+    updated[index].completed = !updated[index].completed;
+    set({ todos: updated });
   },
 
   removeTodo: (index) => {
-    const updated = get().todos.filter((_, i) => i !== index)
-    set({ todos: updated })
+    const updated = get().todos.filter((_, i) => i !== index);
+    set({ todos: updated });
   },
 
   clearTodos: () => {
-    set({ todos: [] })
+    set({ todos: [] });
   },
 
   setAll: (items) => {
-    set({ todos: items })
-  }
-}))
+    set({ todos: items });
+  },
+}));

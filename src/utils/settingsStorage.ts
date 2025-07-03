@@ -9,10 +9,10 @@ import {
 export const SETTINGS_FILE_NAME = 'settings.json';
 
 export type Settings = {
-  defaultHours: number,
-  autoDeleteTasksOnComplete: boolean,
-  autoDeleteTimer: number,
-  enablePopupAfterTaskExpiry: boolean,
+  defaultHours: number;
+  autoDeleteTasksOnComplete: boolean;
+  autoDeleteTimer: number;
+  enablePopupAfterTaskExpiry: boolean;
 };
 
 const defaultSettings: Settings = {
@@ -36,7 +36,10 @@ export async function loadSettings(): Promise<Settings> {
       const parsed = JSON.parse(data);
       return { ...defaultSettings, ...parsed };
     } catch (err) {
-      console.warn('Failed to parse settings.json, falling back to defaults:', err);
+      console.warn(
+        'Failed to parse settings.json, falling back to defaults:',
+        err
+      );
       return defaultSettings;
     }
   } else {
