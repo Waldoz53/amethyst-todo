@@ -1,66 +1,28 @@
 import { useEffect, useState } from 'react';
 import '../App.css';
-import {
-  BaseDirectory,
-  exists,
-  readTextFile,
-  writeTextFile,
-  mkdir,
-} from '@tauri-apps/plugin-fs';
 import TodoForm from '../components/TodoForm';
 import TodoItem from '../components/TodoItem';
-
-const FILE_NAME = 'todo.json';
-
-type TodoItem = {
-  text: string;
-  completed: boolean;
-  createdAt: string;
-  dueDate: string;
-};
-
-async function loadTodoList(): Promise<TodoItem[]> {
-  const fileAppDataExists = await exists(FILE_NAME, {
-    baseDir: BaseDirectory.AppData,
-  });
-  if (fileAppDataExists) {
-    const data = await readTextFile(FILE_NAME, {
-      baseDir: BaseDirectory.AppData,
-    });
-    console.log('File found! Data: ', data);
-    return JSON.parse(data);
-  } else {
-    console.log('No file found :(, creating file and/or directory');
-    await mkdir('', {
-      baseDir: BaseDirectory.AppData,
-    });
-    return [];
-  }
-}
-
-async function saveTodoList(list: TodoItem[]): Promise<void> {
-  const jsonList = JSON.stringify(list);
-  await writeTextFile(FILE_NAME, jsonList, { baseDir: BaseDirectory.AppData });
-}
+import { TodoItem as TodoType } from '../utils/todoStorage';
+import { useTodoStore } from '../stores/useTodoStore';
+import { useSettingsStore } from '../stores/useSettingsStore';
 
 function Home() {
+  const { todos, addTodo, toggleTodo, removeTodo, clearTodos, loadTodos, saveTodos, loaded } = useTodoStore()
+  const { settings } = useSettingsStore()
   const [input, setInput] = useState('');
-  const [list, setList] = useState<TodoItem[]>([]);
   const [dueInHours, setDueInHours] = useState(1);
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    loadTodoList().then((savedList) => {
-      setList(savedList.length ? savedList : []);
-      setLoaded(true);
-    });
+    loadTodos()
+    setDueInHours(settings.defaultHours)
   }, []);
 
   useEffect(() => {
     if (loaded) {
-      saveTodoList(list);
+      saveTodos()
+      setDueInHours(settings.defaultHours);
     }
-  }, [list, loaded]);
+  }, [todos, loaded, settings.defaultHours]);
 
   const addItem = () => {
     if (!input.trim()) return;
@@ -68,55 +30,57 @@ function Home() {
     const now = new Date();
     const due = new Date(now.getTime() + dueInHours * 60 * 60 * 1000);
 
-    const newItem = {
+    const newItem: TodoType = {
       text: input.trim(),
       completed: false,
-      createdAt: new Date().toISOString(),
+      createdAt: now.toISOString(),
       dueDate: due.toISOString(),
     };
 
-    setList([...list, newItem]);
+    addTodo(newItem)
     setInput('');
   };
 
   const toggleItem = (index: number) => {
-    const updated = [...list];
-    updated[index].completed = !updated[index].completed;
-    setList(updated);
+    toggleTodo(index)
   };
 
   const removeItem = (index: number) => {
-    setList(list.filter((_, i) => i !== index));
+    removeTodo(index)
   };
 
   const clearItems = () => {
-    setList([]);
+    clearTodos()
   };
 
   return (
-    <>
-      <main id="app">
-        <TodoForm input={input} setInput={setInput} onAdd={addItem} dueInHours={dueInHours} setDueInHours={setDueInHours} />
+    <main id="app">
+      <TodoForm
+        input={input}
+        setInput={setInput}
+        onAdd={addItem}
+        dueInHours={dueInHours}
+        setDueInHours={setDueInHours}
+      />
 
-        <section className="list">
-          {list.map((item, index) => (
-            <TodoItem
-              key={index}
-              item={item}
-              index={index}
-              onRemove={removeItem}
-              onToggle={toggleItem}
-            />
-          ))}
+      <section className="list">
+        {todos.map((item, index) => (
+          <TodoItem
+            key={index}
+            item={item}
+            index={index}
+            onRemove={removeItem}
+            onToggle={toggleItem}
+          />
+        ))}
 
-          {list.length > 0 && (
-            <button className="remove" onClick={clearItems}>
-              Delete All
-            </button>
-          )}
-        </section>
-      </main>
-    </>
+        {todos.length > 0 && (
+          <button className="remove" onClick={clearItems}>
+            Delete All
+          </button>
+        )}
+      </section>
+    </main>
   );
 }
 
