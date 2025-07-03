@@ -1,14 +1,17 @@
 # Amethyst To Do List
+
 To do list built with React (Typescript) + turned into a lightweight cross platform desktop app with Tauri. Also uses Zustand as context/state storage.
 
 [Based on an old Vue to do list I made years ago](https://codepen.io/wrawasia/pen/poJjgJd)
 
 ## Tauri Plugins used:
+
 - Updater
 - Process
 - Dialog
 
 ## Future Plans:
+
 - Always ongoing: reorganize code
 - When loading the any json (list data or settings, etc), make sure the structure of the json is correct, if not force it to be correct
 - Settings page for:

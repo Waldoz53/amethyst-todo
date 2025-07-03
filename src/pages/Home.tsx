@@ -7,21 +7,30 @@ import { useTodoStore } from '../stores/useTodoStore';
 import { useSettingsStore } from '../stores/useSettingsStore';
 
 function Home() {
-  const { todos, addTodo, toggleTodo, removeTodo, clearTodos, loadTodos, saveTodos, loaded } = useTodoStore()
-  const { settings } = useSettingsStore()
+  const {
+    todos,
+    addTodo,
+    toggleTodo,
+    removeTodo,
+    clearTodos,
+    loadTodos,
+    saveTodos,
+    loaded,
+  } = useTodoStore();
+  const { settings } = useSettingsStore();
   const [input, setInput] = useState('');
   const [dueInHours, setDueInHours] = useState(settings.defaultHours);
 
   useEffect(() => {
-    loadTodos()
-  }, []);
+    loadTodos();
+  }, [loadTodos]);
 
   useEffect(() => {
     if (loaded) {
-      saveTodos()
+      saveTodos();
       setDueInHours(settings.defaultHours);
     }
-  }, [todos, loaded, settings.defaultHours]);
+  }, [todos, loaded, settings.defaultHours, saveTodos]);
 
   const addItem = () => {
     if (!input.trim()) return;
@@ -36,20 +45,20 @@ function Home() {
       dueDate: due.toISOString(),
     };
 
-    addTodo(newItem)
+    addTodo(newItem);
     setInput('');
   };
 
   const toggleItem = (index: number) => {
-    toggleTodo(index)
+    toggleTodo(index);
   };
 
   const removeItem = (index: number) => {
-    removeTodo(index)
+    removeTodo(index);
   };
 
   const clearItems = () => {
-    clearTodos()
+    clearTodos();
   };
 
   return (

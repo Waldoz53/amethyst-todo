@@ -10,7 +10,13 @@ interface TodoFormProps {
   setDueInHours: (value: number) => void;
 }
 
-export default function TodoForm({ input, setInput, onAdd, dueInHours, setDueInHours }: TodoFormProps) {
+export default function TodoForm({
+  input,
+  setInput,
+  onAdd,
+  dueInHours,
+  setDueInHours,
+}: TodoFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
