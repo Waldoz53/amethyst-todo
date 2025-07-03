@@ -4,6 +4,7 @@ import { saveSettings } from "../utils/settingsStorage";
 type Settings = {
   defaultHours: number,
   autoDeleteTasksOnComplete: boolean,
+  autoDeleteTimer: number,
   enablePopupAfterTaskExpiry: boolean,
 }
 
@@ -18,6 +19,7 @@ export const useSettingsStore = create<SettingsStore>(set => ({
   settings: {
     defaultHours: 1,
     autoDeleteTasksOnComplete: false,
+    autoDeleteTimer: 30,
     enablePopupAfterTaskExpiry: false
   },
 

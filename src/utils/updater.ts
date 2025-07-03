@@ -37,6 +37,7 @@ export async function updater() {
     console.log('up to date');
     await message('You are already running the latest version.', {
       title: 'No updates found!',
+      kind: 'info'
     });
   }
 }

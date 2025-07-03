@@ -1,16 +1,15 @@
-# Beta - v0.2.0
-
-### New Feature
-- Default hours setting (in the Settings page) has been added! It can be set to any number
+# Beta - v0.2.1
 
 ### Home
-- Organized code
-- Added the todo list to a zustand store so it can be globally accessed or modified in other pages
+- Experimental: adjusted size of inputs + todo items. I think it looks better + you can have more todo items visible at once without scrolling.
 
 ### Settings
-- Added settings to a zustand store so it can be globally accessed for devs
-- Added a delete data button that clears the data
-- Improved settings button feedback
+- Added new settings!
+- Users can enable an auto delete timer, so after a task is marked as complete, it'll automatically delete itself
+- Users can enable a dialog box/alert after a task's timer expires
 
 ### Miscellaneous
 - Misc. css, js tweaks
+
+### Known Issues
+- The task timer expiry alert message might be a little buggy?

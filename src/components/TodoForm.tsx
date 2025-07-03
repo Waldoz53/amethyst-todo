@@ -16,7 +16,7 @@ export default function TodoForm({ input, setInput, onAdd, dueInHours, setDueInH
   return (
     <section className="form">
       <div className="input-container">
-        <label htmlFor="task">Task name:</label>
+        <label htmlFor="task">Task Name:</label>
         <input
           name="task"
           ref={inputRef}
@@ -28,7 +28,7 @@ export default function TodoForm({ input, setInput, onAdd, dueInHours, setDueInH
       </div>
 
       <div className="input-container">
-        <label htmlFor="due">Due in (hours):</label>
+        <label htmlFor="due">Task Time (hrs):</label>
         <input
           name="due"
           type="number"
@@ -39,7 +39,7 @@ export default function TodoForm({ input, setInput, onAdd, dueInHours, setDueInH
         />
       </div>
 
-      <button onClick={onAdd}>
+      <button onClick={onAdd} title="Or press Enter!">
         <FontAwesomeIcon icon={faPlus} />
       </button>
     </section>

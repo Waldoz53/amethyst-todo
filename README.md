@@ -12,10 +12,8 @@ To do list built with React (Typescript) + turned into a lightweight cross platf
 - Always ongoing: reorganize code
 - When loading the any json (list data or settings, etc), make sure the structure of the json is correct, if not force it to be correct
 - Settings page for:
-- ...notification/dialog popup after a task timer expires
-- ...modifying auto delete on completion
 - ...login/logout
-- ...delete user/local data from there as well
+- ...delete user data from there as well
 - ...delete user account
 - Check current version date + force an update after 30 days?
 - Add an update window that shows the update info AND that shows up only after an update is installed

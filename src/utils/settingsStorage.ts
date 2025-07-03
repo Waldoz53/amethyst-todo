@@ -11,12 +11,14 @@ export const SETTINGS_FILE_NAME = 'settings.json';
 export type Settings = {
   defaultHours: number,
   autoDeleteTasksOnComplete: boolean,
+  autoDeleteTimer: number,
   enablePopupAfterTaskExpiry: boolean,
 };
 
 const defaultSettings: Settings = {
   defaultHours: 1,
   autoDeleteTasksOnComplete: false,
+  autoDeleteTimer: 30,
   enablePopupAfterTaskExpiry: false,
 };
 

@@ -10,11 +10,10 @@ function Home() {
   const { todos, addTodo, toggleTodo, removeTodo, clearTodos, loadTodos, saveTodos, loaded } = useTodoStore()
   const { settings } = useSettingsStore()
   const [input, setInput] = useState('');
-  const [dueInHours, setDueInHours] = useState(1);
+  const [dueInHours, setDueInHours] = useState(settings.defaultHours);
 
   useEffect(() => {
     loadTodos()
-    setDueInHours(settings.defaultHours)
   }, []);
 
   useEffect(() => {
