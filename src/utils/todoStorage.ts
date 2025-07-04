@@ -5,6 +5,7 @@ import {
   writeTextFile,
   mkdir,
 } from '@tauri-apps/plugin-fs';
+import { validateAndFixTodos } from './validateTodos';
 
 export const TODO_FILE_NAME = 'todo.json';
 
@@ -20,18 +21,22 @@ export async function loadTodoList(): Promise<TodoItem[]> {
     baseDir: BaseDirectory.AppData,
   });
 
-  if (fileExists) {
-    const data = await readTextFile(TODO_FILE_NAME, {
-      baseDir: BaseDirectory.AppData,
-    });
-    try {
-      return JSON.parse(data);
-    } catch (err) {
-      console.warn('Failed to parse todo list JSON:', err);
-      return [];
-    }
-  } else {
-    await mkdir('', { baseDir: BaseDirectory.AppData });
+  if (!fileExists) {
+    await mkdir("", { baseDir: BaseDirectory.AppData });
+    await writeTextFile(TODO_FILE_NAME, "[]", { baseDir: BaseDirectory.AppData });
+    return [];
+  }
+
+  try {
+    const raw = await readTextFile(TODO_FILE_NAME, { baseDir: BaseDirectory.AppData });
+    const parsed = JSON.parse(raw);
+    const fixed = validateAndFixTodos(parsed);
+
+    await writeTextFile(TODO_FILE_NAME, JSON.stringify(fixed, null, 2), { baseDir: BaseDirectory.AppData });
+
+    return fixed;
+  } catch (err) {
+    console.error("Failed to load or parse todo.json:", err);
     return [];
   }
 }

@@ -1,9 +1,6 @@
-# Beta - v0.2.2
+# Beta - v0.2.3
 
-### Miscellaneous
-- ESLint and format pass
-- Fixed the checkboxes on windows
+### Bug Fixes + Miscellaneous
+- Added AJV to validate json files (todo, settings, and any others in the future). If any new settings or todo list data is added, itll safely modify the json and then load it, rather than cause errors
+- Fixed a setting checkbox not loading properly on refresh/reload
 - Misc. css, js tweaks
-
-### Known Issues
-- The task timer expiry alert message might be a little buggy?
