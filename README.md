@@ -4,20 +4,21 @@ To do list built with React (Typescript) + turned into a lightweight cross platf
 
 [Based on an old Vue to do list I made years ago](https://codepen.io/wrawasia/pen/poJjgJd)
 
-## Tauri Plugins used:
+## Tauri Plugins used
 
 - Updater
 - Process
 - Dialog
 
-## Future Plans:
+## Other Modules
+- AJV (JSON validation)
+
+## Future Plans
 
 - Always ongoing: reorganize code
-- When loading the any json (list data or settings, etc), make sure the structure of the json is correct, if not force it to be correct
 - Settings page for:
 - ...login/logout
-- ...delete user data from there as well
+- ...delete user data
 - ...delete user account
-- Check current version date + force an update after 30 days?
 - Add an update window that shows the update info AND that shows up only after an update is installed
 - Add a sync to do lists with account sign up, leading into monetization

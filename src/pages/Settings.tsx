@@ -25,6 +25,7 @@ export default function Settings() {
     setDefaultHours(settings.defaultHours);
     setAutoDelete(settings.autoDeleteTasksOnComplete);
     setAutoDeleteTimer(settings.autoDeleteTimer);
+    setEnablePopup(settings.enablePopupAfterTaskExpiry)
   }, [settings]);
 
   const handleCheck = async () => {
@@ -122,7 +123,7 @@ export default function Settings() {
       <div className="information">
         <p>Amethyst To Do List</p>
         <p>Developed by Amethyst Software (Waleed R.)</p>
-        <p>v0.2.2</p>
+        <p>Beta - v0.2.3</p>
       </div>
     </main>
   );

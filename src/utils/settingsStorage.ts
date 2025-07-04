@@ -5,6 +5,7 @@ import {
   writeTextFile,
   mkdir,
 } from '@tauri-apps/plugin-fs';
+import { validateAndFixSettings } from "./validateSettings"
 
 export const SETTINGS_FILE_NAME = 'settings.json';
 
@@ -15,37 +16,27 @@ export type Settings = {
   enablePopupAfterTaskExpiry: boolean;
 };
 
-const defaultSettings: Settings = {
-  defaultHours: 1,
-  autoDeleteTasksOnComplete: false,
-  autoDeleteTimer: 30,
-  enablePopupAfterTaskExpiry: false,
-};
-
 export async function loadSettings(): Promise<Settings> {
-  const fileExists = await exists(SETTINGS_FILE_NAME, {
-    baseDir: BaseDirectory.AppData,
-  });
+  const path = { baseDir: BaseDirectory.AppData };
 
-  if (fileExists) {
-    const data = await readTextFile(SETTINGS_FILE_NAME, {
-      baseDir: BaseDirectory.AppData,
-    });
+  const existsFile = await exists(SETTINGS_FILE_NAME, path);
+  if (!existsFile) {
+    await mkdir('', path);
+    const defaults = validateAndFixSettings({});
+    await writeTextFile(SETTINGS_FILE_NAME, JSON.stringify(defaults, null, 2), path);
+    return defaults;
+  }
 
-    try {
-      const parsed = JSON.parse(data);
-      return { ...defaultSettings, ...parsed };
-    } catch (err) {
-      console.warn(
-        'Failed to parse settings.json, falling back to defaults:',
-        err
-      );
-      return defaultSettings;
-    }
-  } else {
-    await mkdir('', { baseDir: BaseDirectory.AppData });
-    await saveSettings(defaultSettings);
-    return defaultSettings;
+  try {
+    const raw = await readTextFile(SETTINGS_FILE_NAME, path);
+    const parsed = JSON.parse(raw);
+    const fixed = validateAndFixSettings(parsed);
+    await writeTextFile(SETTINGS_FILE_NAME, JSON.stringify(fixed, null, 2), path);
+    return fixed;
+  } catch (err) {
+    console.error('Failed to load settings. Using defaults.', err);
+    const fallback = validateAndFixSettings({});
+    return fallback;
   }
 }
 

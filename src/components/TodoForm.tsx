@@ -34,7 +34,7 @@ export default function TodoForm({
       </div>
 
       <div className="input-container">
-        <label htmlFor="due">Task Time (hrs):</label>
+        <label htmlFor="due">Task Time:</label>
         <input
           name="due"
           type="number"
