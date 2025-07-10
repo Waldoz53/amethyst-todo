@@ -1,6 +1,6 @@
 # Amethyst To Do List
 
-To do list built with React (Typescript) + turned into a lightweight cross platform desktop app with Tauri. Also uses Zustand as context/state storage.
+To do list built with React (Typescript) + turned into a lightweight cross platform desktop app with Tauri. Also uses Zustand as context/state storage, and Supabase for online syncing storage.
 
 [Based on an old Vue to do list I made years ago](https://codepen.io/wrawasia/pen/poJjgJd)
 
@@ -11,14 +11,15 @@ To do list built with React (Typescript) + turned into a lightweight cross platf
 - Dialog
 
 ## Other Modules
+
 - AJV (JSON validation)
+- Supabase (PostgresSQL DB)
 
 ## Future Plans
 
 - Always ongoing: reorganize code
 - Settings page for:
-- ...login/logout
 - ...delete user data
 - ...delete user account
 - Add an update window that shows the update info AND that shows up only after an update is installed
-- Add a sync to do lists with account sign up, leading into monetization
+- Monetization (TBD)

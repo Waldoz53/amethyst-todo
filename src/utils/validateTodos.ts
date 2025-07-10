@@ -1,31 +1,36 @@
-import Ajv from "ajv"
-import { TodoItem } from "./todoStorage"
+import Ajv from 'ajv';
+import { TodoItem } from './todoStorage';
 
 const todoItemSchema = {
-  type: "object",
+  type: 'object',
   properties: {
-    text: { type: 'string', default: "[App updated. This task's data might be corrupted! Delete and readd this task]" },
+    id: { type: 'string' },
+    text: {
+      type: 'string',
+      default:
+        "[App updated. This task's data might be corrupted! Delete and readd this task]",
+    },
     completed: { type: 'boolean', default: false },
     createdAt: { type: 'string' },
-    dueDate: { type: 'string' }
+    dueDate: { type: 'string' },
   },
-  required: ['text', 'completed', 'createdAt', 'dueDate'],
-  additionalProperties: false
-} as const
-
-export const todoListSchema = {
-  type: "array",
-  items: todoItemSchema
+  required: ['id', 'text', 'completed', 'createdAt', 'dueDate'],
+  additionalProperties: false,
 } as const;
 
-const ajv = new Ajv({ useDefaults: true, allErrors: true })
-const validate = ajv.compile(todoItemSchema)
+export const todoListSchema = {
+  type: 'array',
+  items: todoItemSchema,
+} as const;
 
-export function validateAndFixTodos(data: any): TodoItem[] {
+const ajv = new Ajv({ useDefaults: true, allErrors: true });
+const validate = ajv.compile(todoItemSchema);
+
+export function validateAndFixTodos(data: unknown): TodoItem[] {
   const now = new Date().toISOString();
 
   if (!Array.isArray(data)) {
-    console.warn("Invalid todos.json format: expected array.");
+    console.warn('Invalid todos.json format: expected array.');
     return [];
   }
 
@@ -40,13 +45,16 @@ export function validateAndFixTodos(data: any): TodoItem[] {
     }
 
     result.push({
-      text: typeof item.text === "string" ? item.text : "[App updated. This task's data might be corrupted! Delete and readd this task]",
-      completed: typeof item.completed === "boolean" ? item.completed : false,
-      createdAt: typeof item.createdAt === "string" ? item.createdAt : now,
-      dueDate: typeof item.dueDate === "string" ? item.dueDate : now
+      id: typeof item.id === 'string' ? item.id : crypto.randomUUID(),
+      text:
+        typeof item.text === 'string'
+          ? item.text
+          : "[App updated. This task's data might be corrupted! Delete and readd this task]",
+      completed: typeof item.completed === 'boolean' ? item.completed : false,
+      createdAt: typeof item.createdAt === 'string' ? item.createdAt : now,
+      dueDate: typeof item.dueDate === 'string' ? item.dueDate : now,
     });
   }
 
   return result;
 }
-
