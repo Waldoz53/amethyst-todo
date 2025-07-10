@@ -5,7 +5,7 @@ import {
   writeTextFile,
   mkdir,
 } from '@tauri-apps/plugin-fs';
-import { validateAndFixSettings } from "./validateSettings"
+import { validateAndFixSettings } from './validateSettings';
 
 export const SETTINGS_FILE_NAME = 'settings.json';
 
@@ -23,7 +23,11 @@ export async function loadSettings(): Promise<Settings> {
   if (!existsFile) {
     await mkdir('', path);
     const defaults = validateAndFixSettings({});
-    await writeTextFile(SETTINGS_FILE_NAME, JSON.stringify(defaults, null, 2), path);
+    await writeTextFile(
+      SETTINGS_FILE_NAME,
+      JSON.stringify(defaults, null, 2),
+      path
+    );
     return defaults;
   }
 
@@ -31,7 +35,11 @@ export async function loadSettings(): Promise<Settings> {
     const raw = await readTextFile(SETTINGS_FILE_NAME, path);
     const parsed = JSON.parse(raw);
     const fixed = validateAndFixSettings(parsed);
-    await writeTextFile(SETTINGS_FILE_NAME, JSON.stringify(fixed, null, 2), path);
+    await writeTextFile(
+      SETTINGS_FILE_NAME,
+      JSON.stringify(fixed, null, 2),
+      path
+    );
     return fixed;
   } catch (err) {
     console.error('Failed to load settings. Using defaults.', err);

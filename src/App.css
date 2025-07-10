@@ -24,7 +24,8 @@ body {
 
 .header a {
   padding: 1em;
-  width: 50%;
+  width: 25%;
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -56,6 +57,17 @@ button {
   border-style: none;
   cursor: pointer;
   box-shadow: 1px 1px 1px black;
+  background: #0069d9;
+  color: white;
+}
+
+button:hover {
+  transform: translateY(1px);
+  background: #0079ff;
+}
+
+button:active {
+  transform: translateY(2px);
 }
 
 input {
@@ -95,18 +107,8 @@ input {
 }
 
 .form button {
-  background: #0069d9;
   color: white;
   height: 37 px;
-}
-
-.form button:hover {
-  background: #0079ff;
-  transform: translateY(1px);
-}
-
-.form button:active {
-  transform: translateY(2px);
 }
 
 .form button svg {
@@ -119,6 +121,10 @@ input {
 
 .list {
   width: 100%;
+}
+
+.list p.empty {
+  color: white;
 }
 
 .item {
@@ -203,33 +209,26 @@ input {
   font-size: 18px;
 }
 
-.item button:hover {
-  transform: translateY(1px);
-}
-
 .item button:hover svg path {
   fill: #4b75a0;
 }
 
-.item button:active {
-  transform: translateY(2px);
-}
-
-.remove {
-  background: #bc3545;
-  color: white;
-  margin-top: 2em;
+.button-container {
   position: fixed;
   bottom: 1em;
 }
 
-.remove:hover {
-  background: #dc3545;
-  transform: translateY(1px);
+.button-container .sync {
+  margin-right: 0.5em;
 }
 
-.remove:active {
-  transform: translateY(2px);
+.button-container .remove {
+  background: #bc3545;
+  color: white;
+}
+
+.button-container .remove:hover {
+  background: #dc3545;
 }
 
 /* end Home */
@@ -286,19 +285,21 @@ input {
 }
 
 .settings button {
-  background: #0069d9;
-  color: white;
   margin: 0;
   margin-top: 1em;
 }
 
-.settings button:hover {
-  background: #0079ff;
-  transform: translateY(1px);
+.settings .user-info {
+  width: 100%;
+  margin-top: 1em;
 }
 
-.settings button:active {
-  transform: translateY(2px);
+.settings .user-info p {
+  margin: 0;
+}
+
+.user-info p strong {
+  color: white;
 }
 
 .settings .information {
@@ -313,3 +314,33 @@ input {
 }
 
 /* end Settings */
+
+/* Login Page */
+.login {
+  padding: 1em;
+}
+
+.login h1 {
+  font-size: 32px;
+  color: white;
+}
+
+.login p {
+  color: white;
+  margin-bottom: 2em;
+}
+
+.login input,
+.login label {
+  margin-bottom: 0.5em;
+}
+
+.login label {
+  color: white;
+}
+
+.login button {
+  margin-bottom: 0.5em;
+}
+
+/* end Login */

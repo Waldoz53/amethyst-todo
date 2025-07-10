@@ -6,6 +6,7 @@ import { useSettingsStore } from '../stores/useSettingsStore';
 import { message } from '@tauri-apps/plugin-dialog';
 
 type TodoItem = {
+  id: string;
   text: string;
   completed: boolean;
   createdAt: string;
@@ -14,17 +15,11 @@ type TodoItem = {
 
 interface TodoItemProps {
   item: TodoItem;
-  index: number;
-  onRemove: (index: number) => void;
-  onToggle: (index: number) => void;
+  onRemove: (id: string) => void;
+  onToggle: (id: string) => void;
 }
 
-export default function TodoItem({
-  item,
-  index,
-  onRemove,
-  onToggle,
-}: TodoItemProps) {
+export default function TodoItem({ item, onRemove, onToggle }: TodoItemProps) {
   const [timeLeft, setTimeLeft] = useState('');
   const popupShown = useRef(false);
 
@@ -60,7 +55,7 @@ export default function TodoItem({
   useEffect(() => {
     if (autoDelete && item.completed) {
       deleteTimer.current = setTimeout(() => {
-        onRemove(index);
+        onRemove(item.id);
       }, autoDeleteTimer);
     }
 
@@ -70,16 +65,16 @@ export default function TodoItem({
         deleteTimer.current = null;
       }
     };
-  }, [item.completed, autoDelete, autoDeleteTimer, index, onRemove]);
+  }, [item.completed, autoDelete, autoDeleteTimer, item.id, onRemove]);
 
   return (
     <div
       role="button"
       tabIndex={0}
       className={`item ${item.completed ? 'completed' : ''}`}
-      onClick={() => onToggle(index)}
+      onClick={() => onToggle(item.id)}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onToggle(index);
+        if (e.key === 'Enter' || e.key === ' ') onToggle(item.id);
       }}
     >
       <p className="line-clamp">
@@ -94,7 +89,7 @@ export default function TodoItem({
       <button
         onClick={(e) => {
           e.stopPropagation();
-          onRemove(index);
+          onRemove(item.id);
         }}
       >
         <FontAwesomeIcon icon={faTrash} />

@@ -19,8 +19,13 @@ export default function TodoForm({
 }: TodoFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onAdd();
+  };
+
   return (
-    <section className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <div className="input-container">
         <label htmlFor="task">Task Name:</label>
         <input
@@ -29,7 +34,6 @@ export default function TodoForm({
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && onAdd()}
         />
       </div>
 
@@ -41,13 +45,12 @@ export default function TodoForm({
           min={1}
           value={dueInHours}
           onChange={(e) => setDueInHours(parseInt(e.target.value))}
-          onKeyDown={(e) => e.key === 'Enter' && onAdd()}
         />
       </div>
 
-      <button onClick={onAdd} title="Or press Enter!">
+      <button type="submit" title="Or press Enter!">
         <FontAwesomeIcon icon={faPlus} />
       </button>
-    </section>
+    </form>
   );
 }

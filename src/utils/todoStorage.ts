@@ -10,6 +10,7 @@ import { validateAndFixTodos } from './validateTodos';
 export const TODO_FILE_NAME = 'todo.json';
 
 export type TodoItem = {
+  id: string;
   text: string;
   completed: boolean;
   createdAt: string;
@@ -22,21 +23,27 @@ export async function loadTodoList(): Promise<TodoItem[]> {
   });
 
   if (!fileExists) {
-    await mkdir("", { baseDir: BaseDirectory.AppData });
-    await writeTextFile(TODO_FILE_NAME, "[]", { baseDir: BaseDirectory.AppData });
+    await mkdir('', { baseDir: BaseDirectory.AppData });
+    await writeTextFile(TODO_FILE_NAME, '[]', {
+      baseDir: BaseDirectory.AppData,
+    });
     return [];
   }
 
   try {
-    const raw = await readTextFile(TODO_FILE_NAME, { baseDir: BaseDirectory.AppData });
+    const raw = await readTextFile(TODO_FILE_NAME, {
+      baseDir: BaseDirectory.AppData,
+    });
     const parsed = JSON.parse(raw);
     const fixed = validateAndFixTodos(parsed);
 
-    await writeTextFile(TODO_FILE_NAME, JSON.stringify(fixed, null, 2), { baseDir: BaseDirectory.AppData });
+    await writeTextFile(TODO_FILE_NAME, JSON.stringify(fixed, null, 2), {
+      baseDir: BaseDirectory.AppData,
+    });
 
     return fixed;
   } catch (err) {
-    console.error("Failed to load or parse todo.json:", err);
+    console.error('Failed to load or parse todo.json:', err);
     return [];
   }
 }

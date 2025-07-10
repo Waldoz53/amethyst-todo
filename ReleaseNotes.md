@@ -1,6 +1,26 @@
-# Beta - v0.2.3
+# Beta - v0.3.0
+
+## New Feature
+
+- Login + sync lists!
+- Syncing prioritizes the local data, and safely merges remote data - no overwrites!
+
+### Home
+
+- If you are logged in, you can press the Sync button to sync lists with a Supabase database!
+- Also retrieves the list from the supabase db
+
+### Login
+
+- Added authentication!
+- Added a signup/login page, and you can logout from the settings page
+
+### Settings
+
+- Displays your email if you are logged in
+- Can log out from the settings page
 
 ### Bug Fixes + Miscellaneous
-- Added AJV to validate json files (todo, settings, and any others in the future). If any new settings or todo list data is added, itll safely modify the json and then load it, rather than cause errors
-- Fixed a setting checkbox not loading properly on refresh/reload
-- Misc. css, js tweaks
+
+- Improved item id management, so auto delete should work better now if you click on multiple items within a few seconds of each other
+- Some misc. css + ts adjustments as usual

@@ -3,18 +3,21 @@ import { TodoItem, loadTodoList, saveTodoList } from '../utils/todoStorage';
 
 type TodoStore = {
   todos: TodoItem[];
+  deletedIds: string[];
   loaded: boolean;
   loadTodos: () => Promise<void>;
   saveTodos: () => Promise<void>;
   addTodo: (item: TodoItem) => void;
-  toggleTodo: (index: number) => void;
-  removeTodo: (index: number) => void;
+  toggleTodo: (id: string) => void;
+  removeTodo: (id: string) => void;
   clearTodos: () => void;
+  clearDeletedIds: () => void;
   setAll: (items: TodoItem[]) => void;
 };
 
 export const useTodoStore = create<TodoStore>((set, get) => ({
   todos: [],
+  deletedIds: [],
   loaded: false,
 
   loadTodos: async () => {
@@ -31,20 +34,25 @@ export const useTodoStore = create<TodoStore>((set, get) => ({
     set({ todos: updated });
   },
 
-  toggleTodo: (index) => {
-    const updated = [...get().todos];
-    updated[index].completed = !updated[index].completed;
+  toggleTodo: (id) => {
+    const updated = get().todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
     set({ todos: updated });
   },
 
-  removeTodo: (index) => {
-    const updated = get().todos.filter((_, i) => i !== index);
-    set({ todos: updated });
+  removeTodo: (id) => {
+    const updated = get().todos.filter((todo) => todo.id !== id);
+    const deleted = [...get().deletedIds, id];
+    console.log(deleted);
+    set({ todos: updated, deletedIds: deleted });
   },
 
   clearTodos: () => {
     set({ todos: [] });
   },
+
+  clearDeletedIds: () => set({ deletedIds: [] }),
 
   setAll: (items) => {
     set({ todos: items });
