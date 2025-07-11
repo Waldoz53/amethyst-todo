@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
 import { formatTimeLeft } from '../utils/formatTimeLeft';
 import { useSettingsStore } from '../stores/useSettingsStore';
-import { message } from '@tauri-apps/plugin-dialog';
+import { useAlertStore } from '../stores/useAlertStore';
 
 type TodoItem = {
   id: string;
@@ -40,10 +40,7 @@ export default function TodoItem({ item, onRemove, onToggle }: TodoItemProps) {
         !popupShown.current
       ) {
         popupShown.current = true;
-        await message(`${item.text} is overdue`, {
-          title: 'Task Overdue!',
-          kind: 'warning',
-        });
+        useAlertStore.getState().enqueue(`${item.text} is overdue`);
       }
     };
 

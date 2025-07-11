@@ -7,6 +7,7 @@ import { useSettingsStore } from '../stores/useSettingsStore';
 import { useSessionStore } from '../stores/useSessionStore';
 import { createClient } from '@supabase/supabase-js';
 import { message } from '@tauri-apps/plugin-dialog';
+import { syncFromSupabase } from '../utils/syncFromSupabase';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -31,6 +32,7 @@ function Home() {
   const [dueInHours, setDueInHours] = useState(settings.defaultHours);
   const session = useSessionStore((s) => s.session);
   const [syncing, setSyncing] = useState(false);
+  const [fetching, setFetching] = useState(false)
 
   useEffect(() => {
     loadTodos();
@@ -128,6 +130,13 @@ function Home() {
     setSyncing(false);
   };
 
+  const fetchFromDb = async () => {
+    setFetching(true)
+    await useTodoStore.getState().loadTodos();
+    await syncFromSupabase()
+    setFetching(false)
+  }
+
   return (
     <main id="app">
       <TodoForm
@@ -152,21 +161,24 @@ function Home() {
           </>
         ) : (
           <p className="empty">
-            To do list is empty. Add a new item with its due date (in hours)
-            above.
+            This list is empty. Add a new item!
           </p>
         )}
       </section>
 
       <section className="button-container">
         {session && (
-          <button className="sync" onClick={syncToDb}>
-            {!syncing ? 'Sync' : 'Syncing...'}
-          </button>
+          <>
+            <button className="sync" onClick={syncToDb}>
+              {!syncing ? 'Save List' : 'Saving...'}
+            </button>
+            <button className="fetch" onClick={fetchFromDb}>{!fetching ? 'Fetch List' : 'Fetching...'}</button>
+          </>
         )}
+
         {todos.length > 0 && (
           <button className="remove" onClick={clearItems}>
-            Delete All
+            Delete All Items (Local)
           </button>
         )}
       </section>
