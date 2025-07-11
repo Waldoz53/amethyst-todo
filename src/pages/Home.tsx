@@ -32,7 +32,7 @@ function Home() {
   const [dueInHours, setDueInHours] = useState(settings.defaultHours);
   const session = useSessionStore((s) => s.session);
   const [syncing, setSyncing] = useState(false);
-  const [fetching, setFetching] = useState(false)
+  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     loadTodos();
@@ -131,11 +131,11 @@ function Home() {
   };
 
   const fetchFromDb = async () => {
-    setFetching(true)
+    setFetching(true);
     await useTodoStore.getState().loadTodos();
-    await syncFromSupabase()
-    setFetching(false)
-  }
+    await syncFromSupabase();
+    setFetching(false);
+  };
 
   return (
     <main id="app">
@@ -160,9 +160,7 @@ function Home() {
             ))}
           </>
         ) : (
-          <p className="empty">
-            This list is empty. Add a new item!
-          </p>
+          <p className="empty">This list is empty. Add a new item!</p>
         )}
       </section>
 
@@ -172,7 +170,9 @@ function Home() {
             <button className="sync" onClick={syncToDb}>
               {!syncing ? 'Save List' : 'Saving...'}
             </button>
-            <button className="fetch" onClick={fetchFromDb}>{!fetching ? 'Fetch List' : 'Fetching...'}</button>
+            <button className="fetch" onClick={fetchFromDb}>
+              {!fetching ? 'Fetch List' : 'Fetching...'}
+            </button>
           </>
         )}
 

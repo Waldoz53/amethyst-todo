@@ -78,7 +78,9 @@ export default function Settings() {
   return (
     <main className="settings">
       <h1>Settings</h1>
-      <p style={{ fontSize: '12px' }}>Settings are automatically saved locally</p>
+      <p style={{ fontSize: '12px' }}>
+        Settings are automatically saved locally
+      </p>
 
       <section className="input-container default-hours">
         <label htmlFor="defaultHours">Default Task Time (in hours):</label>

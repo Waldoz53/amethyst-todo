@@ -49,7 +49,7 @@ export default function App() {
   useEffect(() => {
     const onFocus = () => {
       if (session?.user?.id) {
-        initializeList()
+        initializeList();
       }
     };
 
