@@ -178,7 +178,7 @@ function Home() {
 
         {todos.length > 0 && (
           <button className="remove" onClick={clearItems}>
-            Delete All Items (Local)
+            Delete All (Local)
           </button>
         )}
       </section>
