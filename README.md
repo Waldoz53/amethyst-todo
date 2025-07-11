@@ -19,7 +19,7 @@ To do list built with React (Typescript) + turned into a lightweight cross platf
 
 - Always ongoing: reorganize code
 - Settings page for:
-- ...delete user data
+- ...delete remote data
 - ...delete user account
 - Add an update window that shows the update info AND that shows up only after an update is installed
 - Monetization (TBD)

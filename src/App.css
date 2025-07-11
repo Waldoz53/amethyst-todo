@@ -218,7 +218,8 @@ input {
   bottom: 1em;
 }
 
-.button-container .sync {
+.button-container .sync,
+.button-container .fetch {
   margin-right: 0.5em;
 }
 

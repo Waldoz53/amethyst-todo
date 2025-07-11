@@ -10,6 +10,8 @@ import { useEffect, useRef } from 'react';
 import { useSessionStore } from './stores/useSessionStore';
 import { syncFromSupabase } from './utils/syncFromSupabase';
 import { useTodoStore } from './stores/useTodoStore';
+import { RouteSyncer } from './components/RouteSyncer';
+import { AlertQueueProcessor } from './components/AlertQueueProcessor';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -44,6 +46,17 @@ export default function App() {
     }
   }, [session]);
 
+  useEffect(() => {
+    const onFocus = () => {
+      if (session?.user?.id) {
+        initializeList();
+      }
+    };
+
+    window.addEventListener('focus', onFocus);
+    return () => window.removeEventListener('focus', onFocus);
+  }, [session]);
+
   async function initializeList() {
     await useTodoStore.getState().loadTodos();
     await syncFromSupabase();
@@ -52,6 +65,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <SettingsInitializer />
+      <RouteSyncer />
+      <AlertQueueProcessor />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
