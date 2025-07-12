@@ -1,23 +1,23 @@
 {
-  "version": "0.3.1",
+  "version": "0.3.2",
   "notes": "See the assets to download this version and install.",
-  "pub_date": "2025-07-11T05:20:12.395Z",
+  "pub_date": "2025-07-12T00:14:29.174Z",
   "platforms": {
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOHJyRFlzd3lIVE9kU08zZXRMMjc5SE9LUXJwMHlpWDVtbzVubFJ2RjZ3aGRpcnBBNmxGYmhnbWRIeTlLRkZRazgvdXphaFpOSjBhUHRXSGRvYnphUkFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjEwOTE4CWZpbGU6QW1ldGh5c3QgVG8gRG8uYXBwLnRhci5negpyMmJ0STVTMmM0NFpJTi9MZE9EcWNmd1NwQzE1NFlldE9DMy9TeVBnSEdLU2xXT2FhaXlQaTV0bzhKZGNyK1V4M2RpM0l5amlhUDRWQ0pleFZ1Ni9DZz09Cg==",
-      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.1/Amethyst.To.Do_x64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOHYzNjU3UmtzNytvOTE0cUxsM0hHa1VzSXNJZ0dzU3pLd2RyMERPSGlsSWNCeDd4Rm5lczBHZlRBUWM0OE1yRnl2d204S1Z4MitlSmNzRXg2bU42RUFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjc4Nzg1CWZpbGU6QW1ldGh5c3QgVG8gRG8uYXBwLnRhci5negpFMi9nQ0x5d0pjTHkzSXpPdWNwTkpZNXpxT2kyRzFqc1A0ZWdQYVlwNkRkNzlQKzVJYUdNcFZyZGduWUNVN3pmdmFSWTdMcnNFeHpxVG9lWU52ZzJBQT09Cg==",
+      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.2/Amethyst.To.Do_x64.app.tar.gz"
     },
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOG5wUTNpamZ1bWpad09ieWVjM2hZWjFvSUZsUlhnMWExRUdSUVFKYkw1akVoUTdDYmhBdkVmM2dXOXowTFJWMEF0QmNzMk0xaTVkRE1xdkl2K25pVmdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjEwOTM1CWZpbGU6QW1ldGh5c3QgVG8gRG8uYXBwLnRhci5negp1SXNyYXVkSlk5UUp3UHhyd0pscUhpY3lDOWNmTXp0ZjJmVFlET0FoUzZieWg5VVNYUWcwRUo1N3IwTFpScXEvdG5OMVZzZDU0bEF3WGdMeUZGV2hBQT09Cg==",
-      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.1/Amethyst.To.Do_aarch64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOGxTUjYwMEpVRDRvSDJSSDBkVXk3MWRLdG5oMXZ5OTRhUGxBRjAxd1A2a1V3TzhJcld3SGFCbktaYUhRWHp2Q1VNWk9XRElaMkxsQlNDeFEwQzJmSVEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjc4ODI4CWZpbGU6QW1ldGh5c3QgVG8gRG8uYXBwLnRhci5negpuSURGeFpxbmpjb3Noa0Z4OGhhU0I4OXVCbXVwclNYbzhSVUx6K21WVGRISmtIck9NNENhdHVJSEd2cFJsZnpicnNoOVRjOWlBdjVRQjN4OVAxaWJEQT09Cg==",
+      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.2/Amethyst.To.Do_aarch64.app.tar.gz"
     },
     "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOGpveGhtblhLb3FZQlJjM0t2UmErOUUxNVhoRzRQMEpWUXdBL2xFWGlzdDhKblZ0bUR0SEN2L25Gam1oVEhHbzFTdTRKUERXY2VpZU12VGdFKzBVQndNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjExMTI5CWZpbGU6QW1ldGh5c3QgVG8gRG9fMC4zLjFfYW1kNjQuQXBwSW1hZ2UKZTByRkhRWlRtMzNXM1ZMbUZ1RlorL1NtSlNVSk5WcS9Cd1k2Q1JIUVpLbjZrQ0ZIdXUzRjI5L2tIR1BaYlpIT1VYb20zRDd5T3gvM21lSWF1RTIyQnc9PQo=",
-      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.1/Amethyst.To.Do_0.3.1_amd64.AppImage"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOHY1RWd6U1Y5amNRWGFwM2xhQ0lRYUsrejB4WFg0dkVCVENsRmYrV3pvM3MwTjFVNmpwc2pWbXVNdTVpaU5lK01BemtWdWpYMC9SR01YTXEvNDRCcEFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjc5MDAyCWZpbGU6QW1ldGh5c3QgVG8gRG9fMC4zLjJfYW1kNjQuQXBwSW1hZ2UKZWFGOWQ3MXAwQWcwQmdVckpFWlB3Rm5uZldndGgwU3BjdFYwYkRjQlVzS3RHY0paZ0RQTUoxWEJ2OGROUlIwZ2JaNnVOTG9rSGQxYXlMVDJOSzNkQWc9PQo=",
+      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.2/Amethyst.To.Do_0.3.2_amd64.AppImage"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOGh5c2dzMTFFeWVzKzYvNGNjdG5qNS9vSmkvTHZrOTdBMEFpclB0R1dNc1FKbm1naS9tbkJTYVoyVFBvbXcvcmwvdW9JTWVtSTJwMHJNenNDbjl6d3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjExMjEwCWZpbGU6QW1ldGh5c3QgVG8gRG9fMC4zLjFfeDY0X2VuLVVTLm1zaQorcTBCek10R3FNc1UwZ1gvY2JUWjNYZUpqL0RteW00U200TDZHVWNwNUhFV0NkVUwyTzQ5TXpOZVRIaGtBMlhuUDN6KzZLMUQ2NitsajNhVmFvblRDdz09Cg==",
-      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.1/Amethyst.To.Do_0.3.1_x64_en-US.msi"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTeHhocFRpVWhuOGxXMTlVWU5RcVp4QTVSOGpCNm9QSStsenh5MnFMbE5BNTBzOXowVnBXc1RCR3VTdDFFZDBiV1NKbjQrUU5aUXkydE5wVzRsNklFbkl3cnBwZUZrL3dJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzUyMjc5MjY2CWZpbGU6QW1ldGh5c3QgVG8gRG9fMC4zLjJfeDY0X2VuLVVTLm1zaQpxZzZBcnNoYTQ4M0N6Q2RUd2d2NkdjUmpIVTh5WjBOQURUcDdVSjg5c3lRamlsM1prOUxxRkFJWkt2aUVKTlhJdFYwcGFzbmZicUFzVXZ0R25ncTBEdz09Cg==",
+      "url": "https://github.com/Waldoz53/amethyst-todo/releases/download/app-v0.3.2/Amethyst.To.Do_0.3.2_x64_en-US.msi"
     }
   }
 }
