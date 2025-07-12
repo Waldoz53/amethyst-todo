@@ -292,7 +292,7 @@ input {
 
 .settings .user-info {
   width: 100%;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .settings .user-info p {
@@ -303,10 +303,25 @@ input {
   color: white;
 }
 
+.user-info .new-password-container {
+  margin-top: 1em;
+}
+
+.new-password-container label {
+  color: white;
+}
+
+.new-password-container input {
+  margin: 0.25em 0;
+}
+
+.new-password-container button {
+  margin-top: 0.25em;
+}
+
 .settings .information {
   margin: 0;
-  position: fixed;
-  bottom: 1em;
+  margin-top: 2em;
 }
 
 .information p {
@@ -338,6 +353,10 @@ input {
 
 .login label {
   color: white;
+}
+
+.login input {
+  margin-top: 0.25em;
 }
 
 .login button {

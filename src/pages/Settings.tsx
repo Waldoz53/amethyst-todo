@@ -4,6 +4,7 @@ import { useTodoStore } from '../stores/useTodoStore';
 import { useSettingsStore } from '../stores/useSettingsStore';
 import { useSessionStore } from '../stores/useSessionStore';
 import { createClient } from '@supabase/supabase-js';
+import { confirm, message } from '@tauri-apps/plugin-dialog';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -28,6 +29,9 @@ export default function Settings() {
   const [enablePopup, setEnablePopup] = useState(
     settings.enablePopupAfterTaskExpiry
   );
+
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
   useEffect(() => {
     setDefaultHours(settings.defaultHours);
@@ -72,6 +76,66 @@ export default function Settings() {
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.log('Log out error!');
+    }
+  };
+
+  const changePassword = async () => {
+    if (!newPassword || !confirmNewPassword) {
+      console.log('both password fields are required!');
+      await message('Both password fields are required.', {
+        title: 'New Password Error',
+      });
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      console.log('password do not match!');
+      await message('Passwords do not match', { title: 'New Password Error' });
+      return;
+    }
+
+    console.log('passwords match! updating password...');
+    const { error } = await supabase.auth.updateUser({
+      password: newPassword,
+    });
+    if (error) {
+      console.log(error.message);
+      await message(error.message, { title: 'New Password Error' });
+      return;
+    }
+
+    await message('Password updated successfully!', {
+      title: 'Password Updated!',
+    });
+
+    setNewPassword('');
+    setConfirmNewPassword('');
+  };
+
+  const wipeListRemote = async () => {
+    const userId = session?.user.id;
+
+    if (!userId) {
+      return;
+    }
+
+    const confirmed = await confirm(
+      "This action can't be reverted. Are you sure?",
+      { title: 'Confirm Delete Data' }
+    );
+    if (!confirmed) return;
+
+    const { error } = await supabase
+      .from('todos')
+      .delete()
+      .eq('user_id', userId);
+
+    if (error) {
+      await message(error.message, { title: 'Error Deleting Data' });
+    } else {
+      await message('Successfully deleted uploaded data', {
+        title: 'Success!',
+      });
     }
   };
 
@@ -133,6 +197,9 @@ export default function Settings() {
       </section>
 
       <button onClick={wipeList}>Delete Local List</button>
+      {session && (
+        <button onClick={wipeListRemote}>Delete Uploaded List</button>
+      )}
       <button onClick={handleCheck}>
         {checking ? 'Checking...' : 'Check for Updates'}
       </button>
@@ -143,13 +210,35 @@ export default function Settings() {
             Logged in:&nbsp;<strong>{session?.user.email}</strong>
           </p>
           <button onClick={logOut}>Log Out</button>
+
+          <section className="new-password-container">
+            <label htmlFor="new-password">New Password:</label>
+            <input
+              type="password"
+              name="new-password"
+              value={newPassword}
+              onChange={(e) => {
+                setNewPassword(e.target.value);
+              }}
+            />
+            <label htmlFor="confirm-new-password">Confirm New Password:</label>
+            <input
+              type="password"
+              name="confirm-new-password"
+              value={confirmNewPassword}
+              onChange={(e) => {
+                setConfirmNewPassword(e.target.value);
+              }}
+            />
+            <button onClick={changePassword}>Change Password</button>
+          </section>
         </section>
       )}
 
       <section className="information">
         <p>Amethyst To Do List</p>
         <p>Developed by Amethyst Software (Waleed R.)</p>
-        <p>Beta - v0.3.1</p>
+        <p>Beta - v0.3.2</p>
       </section>
     </main>
   );

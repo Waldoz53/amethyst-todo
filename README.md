@@ -17,9 +17,6 @@ To do list built with React (Typescript) + turned into a lightweight cross platf
 
 ## Future Plans
 
-- Always ongoing: reorganize code
-- Settings page for:
-- ...delete remote data
-- ...delete user account
-- Add an update window that shows the update info AND that shows up only after an update is installed
+- Reorganize CSS structure
+- Adjust CSS as necessary
 - Monetization (TBD)
