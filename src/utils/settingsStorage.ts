@@ -14,6 +14,7 @@ export type Settings = {
   autoDeleteTasksOnComplete: boolean;
   autoDeleteTimer: number;
   enablePopupAfterTaskExpiry: boolean;
+  autoSync: boolean
 };
 
 export async function loadSettings(): Promise<Settings> {

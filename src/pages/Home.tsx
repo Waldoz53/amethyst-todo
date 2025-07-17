@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TodoForm from '../components/TodoForm';
 import TodoItem from '../components/TodoItem';
 import { TodoItem as TodoType } from '../utils/todoStorage';
@@ -33,6 +33,8 @@ function Home() {
   const session = useSessionStore((s) => s.session);
   const [syncing, setSyncing] = useState(false);
   const [fetching, setFetching] = useState(false);
+  const autoSync = settings.autoSync
+  const prevLength = useRef(todos.length)
 
   useEffect(() => {
     loadTodos();
@@ -44,6 +46,16 @@ function Home() {
       setDueInHours(settings.defaultHours);
     }
   }, [todos, loaded, settings.defaultHours, saveTodos]);
+
+  useEffect(() => {
+    if (!autoSync) return;
+
+    if (todos.length !== prevLength.current) {
+      console.log('AutoSync: Todo count changed, syncing...');
+      prevLength.current = todos.length;
+      syncToDb();
+    }
+  }, [todos.length]);
 
   const addItem = () => {
     if (!input.trim()) return;
@@ -138,7 +150,7 @@ function Home() {
   };
 
   return (
-    <main id="app">
+    <main className="home">
       <TodoForm
         input={input}
         setInput={setInput}
@@ -167,9 +179,9 @@ function Home() {
       <section className="button-container">
         {session && (
           <>
-            <button className="sync" onClick={syncToDb}>
+            {!autoSync && <button className="sync" onClick={syncToDb}>
               {!syncing ? 'Save List' : 'Saving...'}
-            </button>
+            </button>}
             <button className="fetch" onClick={fetchFromDb}>
               {!fetching ? 'Fetch List' : 'Fetching...'}
             </button>
@@ -178,7 +190,7 @@ function Home() {
 
         {todos.length > 0 && (
           <button className="remove" onClick={clearItems}>
-            Delete All (Local)
+            {!autoSync ? 'Delete All (Local)' : 'Delete All'}
           </button>
         )}
       </section>

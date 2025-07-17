@@ -29,6 +29,7 @@ export default function Settings() {
   const [enablePopup, setEnablePopup] = useState(
     settings.enablePopupAfterTaskExpiry
   );
+  const [autoSync, setAutoSync] = useState(settings.autoSync)
 
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -38,6 +39,7 @@ export default function Settings() {
     setAutoDelete(settings.autoDeleteTasksOnComplete);
     setAutoDeleteTimer(settings.autoDeleteTimer);
     setEnablePopup(settings.enablePopupAfterTaskExpiry);
+    setAutoSync(settings.autoSync);
   }, [settings]);
 
   const handleCheck = async () => {
@@ -69,6 +71,13 @@ export default function Settings() {
     const newValue = !enablePopup;
     setEnablePopup(newValue);
     updateSettings('enablePopupAfterTaskExpiry', newValue);
+    saveToFile();
+  };
+
+  const toggleAutoSync = () => {
+    const newValue = !autoSync;
+    setEnablePopup(newValue);
+    updateSettings('autoSync', newValue);
     saveToFile();
   };
 
@@ -193,6 +202,18 @@ export default function Settings() {
           type="checkbox"
           checked={enablePopup}
           onChange={() => toggleEnablePopup()}
+        />
+      </section>
+
+      <section className="input-container">
+        <label htmlFor="autosync">
+          Automatically sync to cloud?
+        </label>
+        <input
+          name="autosync"
+          type="checkbox"
+          checked={autoSync}
+          onChange={() => toggleAutoSync()}
         />
       </section>
 

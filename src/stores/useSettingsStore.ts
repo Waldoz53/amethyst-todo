@@ -6,6 +6,7 @@ type Settings = {
   autoDeleteTasksOnComplete: boolean;
   autoDeleteTimer: number;
   enablePopupAfterTaskExpiry: boolean;
+  autoSync: boolean
 };
 
 type SettingsStore = {
@@ -24,6 +25,7 @@ export const useSettingsStore = create<SettingsStore>((set) => ({
     autoDeleteTasksOnComplete: false,
     autoDeleteTimer: 30,
     enablePopupAfterTaskExpiry: false,
+    autoSync: false
   },
 
   updateSettings: (key, value) =>

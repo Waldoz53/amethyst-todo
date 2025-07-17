@@ -12,15 +12,15 @@ export default function Header() {
         <FontAwesomeIcon icon={faHouse} />
       </Link>
 
+      <Link to="/settings">
+        <FontAwesomeIcon icon={faGear} />
+      </Link>
+
       {!session && (
         <Link to="/login">
           <FontAwesomeIcon icon={faUser} />
         </Link>
       )}
-
-      <Link to="/settings">
-        <FontAwesomeIcon icon={faGear} />
-      </Link>
     </nav>
   );
 }

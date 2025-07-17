@@ -8,6 +8,7 @@ const settingsSchema = {
     autoDeleteTasksOnComplete: { type: 'boolean', default: false },
     autoDeleteTimer: { type: 'number', default: 30, minimum: 0 },
     enablePopupAfterTaskExpiry: { type: 'boolean', default: false },
+    autoSync: { type: 'boolean', default: false }
   },
   required: [],
   additionalProperties: false,
