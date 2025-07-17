@@ -1,4 +1,4 @@
-# Beta - v0.3.2
+# Beta - v0.3.3
 
 ### Settings
 - Added an auto sync setting and feature.

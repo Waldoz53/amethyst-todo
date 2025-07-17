@@ -259,7 +259,7 @@ export default function Settings() {
       <section className="information">
         <p>Amethyst To Do List</p>
         <p>Developed by Amethyst Software (Waleed R.)</p>
-        <p>Beta - v0.3.2</p>
+        <p>Beta - v0.3.3</p>
       </section>
     </main>
   );
