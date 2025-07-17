@@ -17,7 +17,7 @@ To do list built with React (Typescript) + turned into a lightweight cross platf
 
 ## Future Plans
 
-- Reorganize JS/TS and CSS structure
+- Reorganize home JS/TS and general CSS structure
 - Adjust CSS as necessary
 - Split up the massive Settings page into more manageable components
 - Monetization (TBD)

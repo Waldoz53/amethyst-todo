@@ -1,40 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoForm from '../components/TodoForm';
-import TodoItem from '../components/TodoItem';
-import { TodoItem as TodoType } from '../utils/todoStorage';
+import TodoItemList from '../components/TodoItemList';
+import HomeActions from '../components/HomeActions';
 import { useTodoStore } from '../stores/useTodoStore';
 import { useSettingsStore } from '../stores/useSettingsStore';
-import { useSessionStore } from '../stores/useSessionStore';
-import { createClient } from '@supabase/supabase-js';
-import { message } from '@tauri-apps/plugin-dialog';
-import { syncFromSupabase } from '../utils/syncFromSupabase';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+import { TodoItem as TodoType } from '../utils/todoStorage';
+import useAutoSync from '../hooks/useAutoSync';
+import useSyncToDb from '../hooks/useSyncToDb';
+import useFetchFromDb from '../hooks/useFetchFromDb';
 
 function Home() {
-  const {
-    todos,
-    addTodo,
-    toggleTodo,
-    removeTodo,
-    clearTodos,
-    loadTodos,
-    saveTodos,
-    loaded,
-    deletedIds,
-    clearDeletedIds,
-  } = useTodoStore();
+  const { todos, addTodo, loaded, saveTodos, loadTodos } = useTodoStore();
   const { settings } = useSettingsStore();
   const [input, setInput] = useState('');
   const [dueInHours, setDueInHours] = useState(settings.defaultHours);
-  const session = useSessionStore((s) => s.session);
-  const [syncing, setSyncing] = useState(false);
-  const [fetching, setFetching] = useState(false);
-  const autoSync = settings.autoSync
-  const prevLength = useRef(todos.length)
+
+  const syncToDb = useSyncToDb();
+  const fetchFromDb = useFetchFromDb();
+
+  useAutoSync();
 
   useEffect(() => {
     loadTodos();
@@ -46,16 +30,6 @@ function Home() {
       setDueInHours(settings.defaultHours);
     }
   }, [todos, loaded, settings.defaultHours, saveTodos]);
-
-  useEffect(() => {
-    if (!autoSync) return;
-
-    if (todos.length !== prevLength.current) {
-      console.log('AutoSync: Todo count changed, syncing...');
-      prevLength.current = todos.length;
-      syncToDb();
-    }
-  }, [todos.length]);
 
   const addItem = () => {
     if (!input.trim()) return;
@@ -75,80 +49,6 @@ function Home() {
     setInput('');
   };
 
-  const toggleItem = (id: string) => {
-    toggleTodo(id);
-  };
-
-  const removeItem = (id: string) => {
-    removeTodo(id);
-  };
-
-  const clearItems = () => {
-    clearTodos();
-  };
-
-  const syncToDb = async () => {
-    setSyncing(true);
-    const userId = session?.user.id;
-
-    if (todos.length === 0) {
-      const { error: deleteAllError } = await supabase
-        .from('todos')
-        .delete()
-        .eq('user_id', userId);
-
-      if (deleteAllError) {
-        console.error('Error deleting all todos:', deleteAllError.message);
-        await message(`${deleteAllError.message}`, { title: 'Sync Error' });
-        return;
-      }
-
-      console.log('All todos deleted from Supabase (local list empty).');
-    }
-
-    if (deletedIds.length > 0) {
-      const { error: deleteError } = await supabase
-        .from('todos')
-        .delete()
-        .in('id', deletedIds);
-
-      if (deleteError) {
-        console.error('Error deleting todos:', deleteError.message);
-        await message(`${deleteError.message}`, { title: 'Sync Error' });
-        return;
-      }
-    }
-
-    const todosToInsert = todos.map((todo) => ({
-      id: todo.id,
-      user_id: userId,
-      text: todo.text,
-      completed: todo.completed,
-      created_at: todo.createdAt,
-      due_date: todo.dueDate,
-    }));
-
-    const { error } = await supabase.from('todos').upsert(todosToInsert, {
-      onConflict: 'id',
-    });
-
-    if (error) {
-      console.log(error);
-      await message(`${error.message}`, { title: 'Sync Error' });
-      return;
-    } else {
-      clearDeletedIds();
-    }
-    setSyncing(false);
-  };
-
-  const fetchFromDb = async () => {
-    setFetching(true);
-    await useTodoStore.getState().loadTodos();
-    await syncFromSupabase();
-    setFetching(false);
-  };
-
   return (
     <main className="home">
       <TodoForm
@@ -159,41 +59,12 @@ function Home() {
         setDueInHours={setDueInHours}
       />
 
-      <section className="list">
-        {todos.length > 0 ? (
-          <>
-            {todos.map((item) => (
-              <TodoItem
-                key={item.id}
-                item={item}
-                onRemove={removeItem}
-                onToggle={toggleItem}
-              />
-            ))}
-          </>
-        ) : (
-          <p className="empty">This list is empty. Add a new item!</p>
-        )}
-      </section>
+      <TodoItemList />
 
-      <section className="button-container">
-        {session && (
-          <>
-            {!autoSync && <button className="sync" onClick={syncToDb}>
-              {!syncing ? 'Save List' : 'Saving...'}
-            </button>}
-            <button className="fetch" onClick={fetchFromDb}>
-              {!fetching ? 'Fetch List' : 'Fetching...'}
-            </button>
-          </>
-        )}
-
-        {todos.length > 0 && (
-          <button className="remove" onClick={clearItems}>
-            {!autoSync ? 'Delete All (Local)' : 'Delete All'}
-          </button>
-        )}
-      </section>
+      <HomeActions
+        syncToDb={syncToDb}
+        fetchFromDb={fetchFromDb}
+      />
     </main>
   );
 }
