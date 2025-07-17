@@ -43,7 +43,7 @@ export default function HomeActions({ syncToDb, fetchFromDb }: Props) {
       )}
       {todos.length > 0 && (
         <button className="remove" onClick={clearTodos}>
-          {!settings.autoSync ? 'Delete All (Local)' : 'Delete All'}
+          {!settings.autoSync || !session ? 'Delete All (Local)' : 'Delete All'}
         </button>
       )}
     </section>

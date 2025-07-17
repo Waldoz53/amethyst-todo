@@ -7,7 +7,7 @@ export default function Header() {
   const session = useSessionStore((s) => s.session);
 
   return (
-    <nav className="header">
+    <nav>
       <Link to="/">
         <FontAwesomeIcon icon={faHouse} />
       </Link>

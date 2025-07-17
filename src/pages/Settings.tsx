@@ -1,3 +1,4 @@
+import '../styles/settings.css'
 import { useSessionStore } from '../stores/useSessionStore';
 import SettingsForm from '../components/settings/SettingsForm';
 import AutoDeleteSettings from '../components/settings/AutoDeleteSettings';
