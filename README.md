@@ -17,6 +17,4 @@ To do list built with React (Typescript) + turned into a lightweight cross platf
 
 ## Future Plans
 
-- Reorganize CSS structure
-- Adjust CSS as necessary
 - Monetization (TBD)

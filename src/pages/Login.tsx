@@ -1,3 +1,4 @@
+import "../styles/login.css"
 import { createClient } from '@supabase/supabase-js';
 import { message } from '@tauri-apps/plugin-dialog';
 import { useState } from 'react';

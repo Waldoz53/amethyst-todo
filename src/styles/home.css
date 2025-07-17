@@ -1,0 +1,187 @@
+.home {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+}
+
+button {
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  border-style: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px black;
+  background: #0069d9;
+  color: white;
+}
+
+button:hover {
+  transform: translateY(1px);
+  background: #0079ff;
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+input {
+  width: 100%;
+  border: none;
+  padding: 0.5em;
+  border: 1px solid black;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.form {
+  margin-bottom: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: center;
+}
+
+.form .input-container {
+  margin-right: 0.5em;
+  flex-grow: 1;
+}
+
+.form .input-container:nth-child(2) {
+  width: 80px;
+  flex-grow: 0;
+}
+
+.input-container label {
+  color: white;
+}
+
+.input-container input {
+  margin-top: 0.25em;
+}
+
+.form button {
+  color: white;
+  height: 37 px;
+}
+
+.form button svg {
+  font-size: 20px;
+}
+
+.form button svg path {
+  fill: white;
+}
+
+.list {
+  width: 100%;
+}
+
+p.empty {
+  color: white;
+}
+
+.item {
+  list-style: none;
+  padding: 0.5em;
+  border: 2px solid #1d2d3d;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  margin-bottom: 0.5em;
+  position: relative;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  background: white;
+}
+
+.item::before {
+  content: '';
+  background: #1d2d3d;
+  height: 4px;
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  transition: 0.3s;
+}
+
+.item:hover {
+  background: #eee;
+  min-height: 75px;
+}
+
+.item:hover::before {
+  width: 100%;
+}
+
+.item p {
+  width: 80%;
+}
+
+.item.completed p {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp:hover {
+  line-clamp: 999;
+  -webkit-line-clamp: 999;
+}
+
+.line-clamp strong {
+  color: #139e4f;
+  padding-right: 0.5em;
+}
+
+.line-clamp strong.overdue {
+  color: #bc3545;
+}
+
+.item button {
+  opacity: 0;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: none;
+}
+
+.item:hover button {
+  opacity: 1;
+}
+
+.item button svg {
+  font-size: 18px;
+}
+
+.item button:hover svg path {
+  fill: #4b75a0;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 1em;
+}
+
+.button-container .sync,
+.button-container .fetch {
+  margin-right: 0.5em;
+}
+
+.button-container .remove {
+  background: #bc3545;
+  color: white;
+}
+
+.button-container .remove:hover {
+  background: #dc3545;
+}

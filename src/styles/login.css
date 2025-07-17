@@ -1,0 +1,30 @@
+.login {
+  padding: 1em;
+}
+
+.login h1 {
+  font-size: 32px;
+  color: white;
+}
+
+.login p {
+  color: white;
+  margin-bottom: 2em;
+}
+
+.login input,
+.login label {
+  margin-bottom: 0.5em;
+}
+
+.login label {
+  color: white;
+}
+
+.login input {
+  margin-top: 0.25em;
+}
+
+.login button {
+  margin-bottom: 0.5em;
+}
